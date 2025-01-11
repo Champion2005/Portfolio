@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+
+  --color-background1: #070f27;
+  --color-background2: #152f49;
+  --color-primaryText: #e6f2ff;
+  --color-secondaryText: #4bfae8;
+  --color-accent: #0e2e2b;
+
+  --default-font-family: 'Inter', sans-serif;
+
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at top left, var(--color-background2) 0%, var(--color-background1) 50%), no-repeat, var(--color-background1);
+}
