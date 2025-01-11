@@ -11,7 +11,7 @@ export const Intro = () => {
                 </p>
 
                 <p className="mt-6 text-sm sm:text-base text-primaryText/75">
-                    Based in Windsor, ON.
+                    📍Based in Windsor, ON. 🍁
                 </p>
 
                 <div className="flex flex-col gap-0">
