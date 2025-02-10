@@ -4,7 +4,7 @@ export const Projects = () => {
     return (
         <section
             id="projects"
-            className="mt-16 px-6 sm:flex-col sm:justify-center max-w-11/12 text-primaryText"
+            className="mt-16 px-6 sm:flex-col sm:justify-center w-full text-primaryText"
         >
             <h2 className="text-lg sm:text-2xl font-bold mb-4">Projects</h2>
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AboutMe = () => {
     return (
-        <section id="aboutme" className="mt-16 px-6 sm:flex-col sm:justify-center max-w-11/12 text-primaryText">
+        <section id="aboutme" className="mt-16 px-6 sm:flex-col sm:justify-center w-full text-primaryText">
             <h2 className="text-lg sm:text-2xl font-bold mb-4">About Me</h2>
             <p className="text-sm sm:text-lg text-primaryText/40">
                 I am a student at the University of Windsor, and my goal is to explore the world of computer science and 
@@ -19,7 +19,7 @@ export const AboutMe = () => {
 
                 <br/><br/>
 
-                In my spare time, I'm usually working on a personal project, out with friends, or playing video games. 
+                Check out my <a href="Aditya_Patel_resume.pdf" target="none" className="text-m sm:text-lg text-secondaryText/60 hover:text-secondaryText underline">resume</a> for more information on my skills and experience. 
                 
             </p>
         </section>
