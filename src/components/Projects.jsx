@@ -85,7 +85,7 @@ export const Projects = () => {
     >
       <h2 className="text-lg sm:text-2xl font-bold mb-4">Projects</h2>
 
-      <section className="grid grid-cols-2 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ProjectCard
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With a features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
