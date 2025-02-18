@@ -3,6 +3,7 @@ import ChopChop from "../assets/ChopChop.png";
 import EcoWatch from "../assets/EcoWatch.png";
 import Orrery from "../assets/Orrery.png";
 import Remora from "../assets/Remora.png";
+import Datarai from "../assets/Datarai.png";
 
 const ProjectCard = ({
   title,
@@ -21,10 +22,15 @@ const ProjectCard = ({
   };
 
   return (
-    <div className="bg-background2/30 rounded-2xl">
+    <div className="bg-background2/30 rounded-2xl max-h-auto">
       {image && (
         <>
-          <div className={"flex justify-center max-h-[33%] w-full mb-4 rounded-t-2xl "+imageColor}>
+          <div
+            className={
+              "flex justify-center h-[33%] w-full mb-4 rounded-t-2xl " +
+              imageColor
+            }
+          >
             <img src={image} alt={title} className="object-scale-down" />
           </div>
         </>
@@ -55,13 +61,15 @@ const ProjectCard = ({
         )}
 
         <div className="flex flex-col gap-0">
-          <a
-            href={githubLink}
-            target="none"
-            className="mt-4 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
-          >
-            -{">"} Github
-          </a>
+          {githubLink && (
+            <a
+              href={githubLink}
+              target="none"
+              className="mt-4 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
+            >
+              -{">"} Github
+            </a>
+          )}
           {webappLink && (
             <a
               href={webappLink}
@@ -87,6 +95,16 @@ export const Projects = () => {
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ProjectCard
+          title="Datarai"
+          desc="An AI powered web app for analyizing and visualizing data. (In progress)"
+          shortDesc="An AI powered web app..."
+          techStack="React, Vite, Firebase, HTML/CSS, Git"
+          githubLink="https://github.com/Champion2005/Datarai"
+          webappLink="https://datara-1834e.web.app/"
+          image={Datarai}
+          imageColor="bg-amber-50"
+        />
+        <ProjectCard
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With a features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
           shortDesc="Engaging fullstack web app..."
@@ -94,7 +112,7 @@ export const Projects = () => {
           githubLink="https://github.com/Kataray/Winhacks2025"
           webappLink="https://winhacks-2025.web.app/"
           image={ChopChop}
-            imageColor="bg-amber-100"
+          imageColor="bg-amber-100"
         />
         <ProjectCard
           title="Orrery, or Are We?"
