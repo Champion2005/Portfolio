@@ -93,7 +93,7 @@ export const Projects = () => {
     >
       <h2 className="text-lg sm:text-2xl font-bold mb-4">Projects</h2>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ProjectCard
           title="Datarai"
           desc="An AI powered web app for analyizing and visualizing data. (In progress)"
