@@ -98,7 +98,7 @@ export const Projects = () => {
           title="Datarai"
           desc="An AI powered web app for analyizing and visualizing data. (In progress)"
           shortDesc="An AI powered web app..."
-          techStack="React, Vite, Firebase, HTML/CSS, Git"
+          techStack="React, Vite, Firebase, Tailwind CSS, Git, Gemini API, Google Cloud"
           githubLink="https://github.com/Champion2005/Datarai"
           webappLink="https://datarai.com"
           image={Datarai}
