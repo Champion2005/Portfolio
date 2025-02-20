@@ -100,7 +100,7 @@ export const Projects = () => {
           shortDesc="An AI powered web app..."
           techStack="React, Vite, Firebase, HTML/CSS, Git"
           githubLink="https://github.com/Champion2005/Datarai"
-          webappLink="https://datara-1834e.web.app/"
+          webappLink="https://datarai.com"
           image={Datarai}
           imageColor="bg-amber-50"
         />
