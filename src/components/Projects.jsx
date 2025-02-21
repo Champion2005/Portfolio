@@ -22,12 +22,12 @@ const ProjectCard = ({
   };
 
   return (
-    <div className="bg-background2/30 rounded-2xl max-h-auto">
+    <div className="bg-background2/30 rounded-2xl pb-4">
       {image && (
         <>
           <div
             className={
-              "flex justify-center h-[33%] w-full mb-4 rounded-t-2xl " +
+              "flex justify-center h-48 w-full mb-4 rounded-t-2xl " +
               imageColor
             }
           >
@@ -55,7 +55,7 @@ const ProjectCard = ({
               className="test-primaryText underline hover:cursor-pointer"
               onClick={toggleDesc}
             >
-              Read More
+              Show More
             </p>
           </>
         )}

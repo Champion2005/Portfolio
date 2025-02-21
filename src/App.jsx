@@ -3,6 +3,7 @@ import './App.css'
 import { Intro } from './components/Intro'
 import { AboutMe } from './components/AboutMe'
 import { Projects } from './components/Projects'
+import Skills from './components/Skills'
 
 function App() {
 
@@ -17,6 +18,9 @@ function App() {
       </div>
       <div className="flex justify-center sm:w-10/12 mb-12">
         <Projects />
+      </div>
+      <div className="flex justify-center sm:w-10/12 mb-12">
+        <Skills />
       </div>
       <div className="flex justify-center">
         <p className="text-white/40 ">© 2025 Aditya Patel ❤️</p>
