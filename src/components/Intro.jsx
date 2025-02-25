@@ -21,10 +21,7 @@ export const Intro = () => {
                 </div>
 
                 <div className="mt-12">
-                    <button className="bg-blue-400 border-2 border-white/50 rounded-lg p-2 flex gap-2 justify-center content-center cursor-pointer hover:bg-blue-500" onClick={() => window.open("https://www.buymeacoffee.com/adityapatel")}>
-                    <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" className="w-1/12" alt="Buy me a coffee" />
-                    <p className="">Buy me a coffee</p>
-                    </button>
+                <a href="https://www.buymeacoffee.com/adityapatel"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&slug=adityapatel&button_colour=5F7FFF&font_colour=ffffff&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" /></a>
                     <p className="italic text-xs mt-1 text-white/50">if you wish to support me</p>
                 </div>
             </div>
