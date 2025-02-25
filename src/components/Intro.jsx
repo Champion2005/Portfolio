@@ -19,6 +19,14 @@ export const Intro = () => {
                     <a href="https://www.linkedin.com/in/aditya-patel52/" target="none" className="text-md sm:text-lg text-secondaryText/60 hover:text-secondaryText underline">-{'>'} LinkedIn</a>
                     <a href="Aditya_Patel_resume.pdf" target="none" className="text-md sm:text-lg text-secondaryText/60 hover:text-secondaryText underline">-{'>'} Resume</a>
                 </div>
+
+                <div className="mt-12">
+                    <button className="bg-blue-400 border-2 border-white/50 rounded-lg p-2 flex gap-2 justify-center content-center cursor-pointer hover:bg-blue-500" onClick={() => window.open("https://www.buymeacoffee.com/adityapatel")}>
+                    <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" className="w-1/12" alt="Buy me a coffee" />
+                    <p className="">Buy me a coffee</p>
+                    </button>
+                    <p className="italic text-xs mt-1 text-white/50">if you wish to support me</p>
+                </div>
             </div>
         </section>
     );
