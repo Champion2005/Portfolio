@@ -12,6 +12,7 @@ const ProjectCard = ({
   techStack,
   githubLink,
   webappLink,
+  videoLink,
   image,
   imageColor,
 }) => {
@@ -60,12 +61,12 @@ const ProjectCard = ({
           </>
         )}
 
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-col gap-0 mt-4">
           {githubLink && (
             <a
               href={githubLink}
               target="none"
-              className="mt-4 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
+              className="text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
             >
               -{">"} Github
             </a>
@@ -77,6 +78,15 @@ const ProjectCard = ({
               className="text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
             >
               -{">"} Webapp
+            </a>
+          )}
+          {videoLink && (
+            <a
+              href={videoLink}
+              target="none"
+              className="text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
+            >
+              -{">"} Demo Video
             </a>
           )}
         </div>
@@ -111,6 +121,7 @@ export const Projects = () => {
           techStack="React, Vite, Firebase, HTML/CSS, Git"
           githubLink="https://github.com/Kataray/Winhacks2025"
           webappLink="https://winhacks-2025.web.app/"
+          videoLink="https://youtu.be/n42aaKRyois"
           image={ChopChop}
           imageColor="bg-amber-100"
         />
@@ -121,6 +132,7 @@ export const Projects = () => {
           techStack="ThreeJS, TypeScript, Vite, Firebase, HTML/CSS, Git"
           githubLink="https://github.com/jwlebert/spaceapps-2024"
           webappLink="https://spaceapps-2024.web.app/"
+          videoLink="https://youtu.be/dSeUayV1NOw"
           image={Orrery}
           imageColor="bg-amber-300"
         />
