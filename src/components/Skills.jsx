@@ -16,15 +16,23 @@ const skillsData = [
       "TypeScript",
     ],
   },
-  { category: "Backend", skills: ["Firebase Auth", "Supabase Auth"] },
-  { category: "Database", skills: ["Firebase Real-time Database", "Supabase", "SQL"] },
-  { category: "Dev Tools", skills: ["Git", "Linux", 'Google Cloud', 'AWS'] },
-  // Add more categories and skills as needed
+  {
+    category: "Backend",
+    skills: ["Firebase Authentication", "Firebase Functions", "Node.js"],
+  },
+  {
+    category: "Database",
+    skills: ["Firestore Database", "Firebase Real-time Database", "SQL"],
+  },
+  { category: "Dev Tools", skills: ["Git", "Linux", "Google Cloud", "AWS"] },
 ];
 
 const Skills = () => {
   return (
-    <section id="skills" className="mt-4 px-6 sm:flex-col sm:justify-center w-screen text-primaryText">
+    <section
+      id="skills"
+      className="mt-4 px-6 sm:flex-col sm:justify-center w-screen text-primaryText"
+    >
       <h2 className="text-lg sm:text-2xl font-bold mb-4">Technical Skills</h2>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {skillsData.map((skillCategory, index) => (
