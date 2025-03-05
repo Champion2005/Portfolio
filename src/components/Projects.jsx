@@ -106,8 +106,8 @@ export const Projects = () => {
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ProjectCard
           title="Datarai"
-          desc="An AI powered web app for analyizing and visualizing data. (In progress)"
-          shortDesc="An AI powered web app..."
+          desc="An AI-powered full-stack web app for analyizing and visualizing data. (In progress)"
+          shortDesc="An AI-powered full-stack web app..."
           techStack="React, Vite, Firebase, Tailwind CSS, Git, Gemini API, Google Cloud, Node.js, Express, Cors, Axios"
           githubLink="https://github.com/Champion2005/Datarai"
           webappLink="https://datarai.com"
@@ -117,7 +117,7 @@ export const Projects = () => {
         <ProjectCard
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With a features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
-          shortDesc="Engaging fullstack web app..."
+          shortDesc="Engaging web app designed for..."
           techStack="React, Vite, Firebase, HTML/CSS, Git"
           githubLink="https://github.com/Kataray/Winhacks2025"
           webappLink="https://winhacks-2025.web.app/"
