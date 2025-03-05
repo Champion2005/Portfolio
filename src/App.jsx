@@ -10,9 +10,9 @@ function App() {
   return (
     <div className='flex flex-col items-center'>
       <>
-      <div className="md:flex max-w-screen">
-        <Intro className="w-1/2"/>
-        <div className="mb-16">
+      <div className="lg:flex justify-center sm:w-10/12 mb-12">
+        <Intro className=""/>
+        <div className="">
           <AboutMe className="" />
         </div>
       </div>

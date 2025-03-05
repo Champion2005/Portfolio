@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Intro = () => {
     return (
-        <section id="leftMenu" className="mt-16 px-6 sm:flex sm:min-w-2/5 sm:justify-center text-primaryText">
+        <section id="leftMenu" className="justify-self-start mt-16 px-6 sm:flex sm:min-w-2/5  text-primaryText">
             <div className="sm:min-w-3/4">
                 
                 <h1 className="text-4xl sm:text-5xl font-extrabold pb-2">Aditya Patel</h1>
