@@ -28,8 +28,7 @@ const ProjectCard = ({
         <>
           <div
             className={
-              "flex justify-center h-48 w-full mb-4 rounded-t-2xl " +
-              imageColor
+              "flex justify-center h-48 w-full mb-4 rounded-t-2xl " + imageColor
             }
           >
             <img src={image} alt={title} className="object-scale-down" />
@@ -95,13 +94,14 @@ const ProjectCard = ({
   );
 };
 
-export const Projects = () => {
+export const Projects = ({ projectRef }) => {
   return (
     <section
+      ref={projectRef}
       id="projects"
       className="mt-16 px-6 sm:flex-col sm:justify-center w-full text-primaryText"
     >
-      <h2 className="text-lg sm:text-2xl font-bold mb-4">Projects</h2>
+      <h2 className="text-xl sm:text-2xl font-bold mb-4">Personal Projects</h2>
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ProjectCard
