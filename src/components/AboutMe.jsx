@@ -15,10 +15,14 @@ export const AboutMe = () => {
                 I have considerable experience with <span className=" text-primaryText">Python, Java and React. </span> 
                 During my time at <span className=" text-primaryText">Glendor</span>, I completed a variety of tasks using Python
                 extensively. I have also worked on a few personal projects using React and Java. I am currently working on improving
-                my skills in <span className="text-primaryText">React and Web Dev</span> by making this personal website.
+                my skills in <span className="text-primaryText">React and Full-Stack Web Dev</span> by making 
+                <a href="https://datarai.com" target='none' className='text-primaryText underline'>datarai.com</a> as well as future projects.
 
                 <br/><br/>
 
+                My interests include <span className="text-primaryText">Machine Learning/Artificial Intelligence, Web Development, and Robotics</span>.
+
+                <br/><br/>
                 Check out my <a href="Aditya_Patel_resume.pdf" target="none" className="text-m sm:text-lg text-secondaryText/60 hover:text-secondaryText underline">resume</a> for more information on my skills and experience. 
                 
             </p>

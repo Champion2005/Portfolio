@@ -38,7 +38,7 @@ const Skills = () => {
         {skillsData.map((skillCategory, index) => (
           <div
             key={index}
-            className="bg-background2/30 shadow-md rounded-2xl p-4"
+            className="bg-background2/30 shadow-md rounded-2xl px-6 py-4 h-60"
           >
             <h3 className="text-xl font-semibold mb-2">
               {skillCategory.category}

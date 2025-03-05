@@ -36,7 +36,7 @@ const ProjectCard = ({
           </div>
         </>
       )}
-      <div className="px-8 py-2">
+      <div className="px-6">
         <h3 className="text-lg font-bold">{title}</h3>
         <p className="text-primaryText/75">{techStack}</p>
         {showDesc ? (
