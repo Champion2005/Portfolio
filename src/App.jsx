@@ -21,10 +21,10 @@ function App() {
         </div>
       </div>
       <div className="flex justify-center sm:w-10/12 mb-12">
-        <Skills skillRef={skillRef} />
+        <Projects projectRef={projectRef} />
       </div>
       <div className="flex justify-center sm:w-10/12 mb-12">
-        <Projects projectRef={projectRef} />
+        <Skills skillRef={skillRef} />
       </div>
       <div className="flex justify-center">
         <p className="text-white/40 ">© 2025 Aditya Patel ❤️</p>
