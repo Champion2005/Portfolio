@@ -1,9 +1,9 @@
 import React from "react";
-import ChopChop from "../assets/ChopChop.png";
-import EcoWatch from "../assets/EcoWatch.png";
-import Orrery from "../assets/Orrery.png";
-import Remora from "../assets/Remora.png";
-import Datarai from "../assets/Datarai.png";
+import ChopChop from "/assets/ChopChop.png";
+import EcoWatch from "/assets/EcoWatch.png";
+import Orrery from "/assets/Orrery.png";
+import Remora from "/assets/Remora.png";
+import Datarai from "/assets/Datarai.png";
 
 const ProjectCard = ({
   title,
