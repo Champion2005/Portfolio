@@ -22,6 +22,8 @@ const ProjectCard = ({
     setShowDesc(!showDesc);
   };
 
+  techStack = techStack.split(", ");
+
   return (
     <div className="bg-background2/30 rounded-2xl pb-4">
       {image && (
@@ -37,10 +39,23 @@ const ProjectCard = ({
       )}
       <div className="px-6">
         <h3 className="text-lg font-bold">{title}</h3>
-        <p className="text-primaryText/75">{techStack}</p>
+        <div className="">
+          {
+            <div className="flex flex-wrap gap-2 mt-2">
+              {techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="text-xs sm:text-sm bg-primaryText/10 px-2 py-1 rounded hover:bg-primaryText/20 cursor-default"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          }
+        </div>
         {showDesc ? (
           <>
-            <p className="text-primaryText/40 mt-8">{desc}</p>
+            <p className="text-primaryText/40 mt-2">{desc}</p>
             <p
               className="test-primaryText underline hover:cursor-pointer"
               onClick={toggleDesc}
@@ -50,7 +65,7 @@ const ProjectCard = ({
           </>
         ) : (
           <>
-            <p className="text-primaryText/40 mt-8">{shortDesc}</p>
+            <p className="text-primaryText/40 mt-2">{shortDesc}</p>
             <p
               className="test-primaryText underline hover:cursor-pointer"
               onClick={toggleDesc}
@@ -105,10 +120,10 @@ export const Projects = ({ projectRef }) => {
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ProjectCard
-          title="Datarai"
-          desc="An AI-powered full-stack web app for analyizing and visualizing data. (In progress)"
+          title="Datarai (Prototype)"
+          desc="An AI-powered full-stack web app for analyizing and visualizing data."
           shortDesc="An AI-powered full-stack web app..."
-          techStack="React, Vite, Firebase, Tailwind CSS, Git, Gemini API, Google Cloud, Node.js, Express, Cors, Axios"
+          techStack="React, Vite, Firebase, Tailwind CSS, Git, Gemini API, Google Cloud, Node.js"
           githubLink="https://github.com/Champion2005/Datarai"
           webappLink="https://datarai.com"
           image={Datarai}

@@ -12,7 +12,7 @@ function App() {
   const skillRef = React.useRef(null);
   const projectRef = React.useRef(null);
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center cursor-default'>
       <>
       <div className="lg:flex justify-center sm:w-10/12 mb-12">
         <Intro aboutRef={aboutRef} projectRef={projectRef} skillRef={skillRef}/>
