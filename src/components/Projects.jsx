@@ -121,7 +121,7 @@ export const Projects = ({ projectRef }) => {
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <ProjectCard
           title="Datarai (Prototype)"
-          desc="An AI-powered full-stack web app for analyizing and visualizing data."
+          desc="An AI-powered full-stack web app for analyzing and visualizing data."
           shortDesc="An AI-powered full-stack web app..."
           techStack="React, Vite, Firebase, Tailwind CSS, Git, Gemini API, Google Cloud, Node.js"
           githubLink="https://github.com/Champion2005/Datarai"
