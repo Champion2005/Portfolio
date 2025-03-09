@@ -55,7 +55,7 @@ const ProjectCard = ({
         </div>
         {showDesc ? (
           <>
-            <p className="text-primaryText/40 mt-2">{desc}</p>
+            <p className="text-primaryText/40 mt-4">{desc}</p>
             <p
               className="test-primaryText underline hover:cursor-pointer"
               onClick={toggleDesc}
@@ -65,7 +65,7 @@ const ProjectCard = ({
           </>
         ) : (
           <>
-            <p className="text-primaryText/40 mt-2">{shortDesc}</p>
+            <p className="text-primaryText/40 mt-4">{shortDesc}</p>
             <p
               className="test-primaryText underline hover:cursor-pointer"
               onClick={toggleDesc}
