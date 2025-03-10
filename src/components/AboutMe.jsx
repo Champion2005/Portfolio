@@ -25,7 +25,7 @@ export const AboutMe = ({ aboutRef }) => {
         <span className="text-primaryText">React and Full-Stack Web Dev</span>{" "}
         by making{" "}
         <a
-          href="https://datarai.com"
+          href="https://prototype.datarai.com"
           target="none"
           className="text-primaryText underline"
         >

@@ -125,7 +125,7 @@ export const Projects = ({ projectRef }) => {
           shortDesc="An AI-powered full-stack web app..."
           techStack="React, Vite, Firebase, Tailwind CSS, Git, Gemini API, Google Cloud, Node.js"
           githubLink="https://github.com/Champion2005/Datarai"
-          webappLink="https://datarai.com"
+          webappLink="https://prototype.datarai.com"
           image={Datarai}
           imageColor="bg-amber-50"
         />
