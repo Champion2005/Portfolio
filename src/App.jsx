@@ -29,7 +29,7 @@ function App() {
         <div className="flex justify-center sm:w-10/12 mb-12">
           <Skills skillRef={skillRef} />
         </div>
-        <div className="w-full flex flex-col justify-between items-center bg-red/80 backdrop-blur-sm z-50 border-t h-36">
+        <div className="w-full flex flex-col justify-between items-center bg-red/80 z-50 border-t h-36">
           <div className="flex grow items-center gap-4">
             <button className="shadow-md border-1 border-primaryText/50 rounded-3xl gap-1 px-2 hover:bg-primaryText/10">
               <a
