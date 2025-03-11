@@ -21,13 +21,13 @@ const Hero = () => {
             Based in Windsor, ON <span className="text-primaryText">🍁</span>
           </p>
           <button
-            className="group border-1 border-primaryText/50 rounded-3xl p-3 flex justify-self-center items-center"
+            className="group border-1 border-primaryText/50 shadow-md rounded-3xl p-3 flex justify-self-center items-center hover:scale-105"
             onClick={() => {
               document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
             }}
           >
             View my work
-            <FaArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            <FaArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-[2px] transition-transform" />
           </button>
         </motion.div>
       </div>

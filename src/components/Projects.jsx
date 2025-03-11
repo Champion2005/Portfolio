@@ -6,6 +6,8 @@ import Remora from "/assets/Remora.png";
 import Datarai from "/assets/Datarai.png";
 
 import { motion } from "framer-motion";
+import { FiGithub, FiVideo } from "react-icons/fi";
+import { MdOutlineWebAsset } from "react-icons/md";
 
 const ProjectCard = ({
   title,
@@ -39,15 +41,15 @@ const ProjectCard = ({
           </div>
         </>
       )}
-      <div className="px-6">
+      <div className="flex flex-col px-6">
         <h3 className="text-lg font-bold">{title}</h3>
-        <div className="">
+        <div className="min-h-18">
           {
             <div className="flex flex-wrap gap-2 mt-2">
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs sm:text-sm bg-primaryText/10 px-2 py-1 rounded hover:bg-primaryText/20 cursor-default"
+                  className="text-xs sm:text-sm border-1 border-primaryText/10 px-2 py-1 rounded-3xl hover:border-primaryText/20 cursor-default"
                 >
                   {tech}
                 </span>
@@ -59,7 +61,7 @@ const ProjectCard = ({
           <>
             <p className="text-primaryText mt-4">{desc}</p>
             <p
-              className="text-primaryText/40 underline hover:cursor-pointer"
+              className="text-primaryText/40 underline hover:cursor-pointer hover:text-secondaryText"
               onClick={toggleDesc}
             >
               Show Less
@@ -69,7 +71,7 @@ const ProjectCard = ({
           <>
             <p className="text-primaryText mt-4">{shortDesc}</p>
             <p
-              className="text-primaryText/40 underline hover:cursor-pointer"
+              className="text-primaryText/40 underline hover:cursor-pointer hover:text-secondaryText"
               onClick={toggleDesc}
             >
               Show More
@@ -77,32 +79,32 @@ const ProjectCard = ({
           </>
         )}
 
-        <div className="flex flex-col gap-0 mt-4">
+        <div className="flex gap-4 mt-4 justify-self-end">
           {githubLink && (
             <a
               href={githubLink}
               target="none"
-              className="text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
+              className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
             >
-              -{">"} Github
+              <FiGithub/>Github
             </a>
           )}
           {webappLink && (
             <a
               href={webappLink}
               target="none"
-              className="text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
+              className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
             >
-              -{">"} Webapp
+              <MdOutlineWebAsset/>Webapp
             </a>
           )}
           {videoLink && (
             <a
               href={videoLink}
               target="none"
-              className="text-m sm:text-l text-secondaryText/60 hover:text-secondaryText underline"
+              className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
             >
-              -{">"} Demo Video
+              <FiVideo/>Video
             </a>
           )}
         </div>
@@ -131,7 +133,7 @@ export const Projects = ({ projectRef }) => {
           title="Datarai (Prototype)"
           desc="An AI-powered full-stack web app for analyzing and visualizing data."
           shortDesc="An AI-powered full-stack web app..."
-          techStack="React, Vite, Firebase, Tailwind CSS, Git, Gemini API, Google Cloud, Node.js"
+          techStack="React, Vite, Firebase, Tailwind CSS, Gemini API, Google Cloud, Node.js"
           githubLink="https://github.com/Champion2005/Datarai"
           webappLink="https://prototype.datarai.com"
           image={Datarai}
@@ -142,7 +144,7 @@ export const Projects = ({ projectRef }) => {
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With a features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
           shortDesc="Engaging web app designed for..."
-          techStack="React, Vite, Firebase, HTML/CSS, Git"
+          techStack="React, Vite, Firebase, HTML, CSS"
           githubLink="https://github.com/Kataray/Winhacks2025"
           webappLink="https://winhacks-2025.web.app/"
           videoLink="https://youtu.be/n42aaKRyois"
@@ -154,7 +156,7 @@ export const Projects = ({ projectRef }) => {
           title="Orrery, or Are We?"
           desc="Made for NASA Space Apps, this project is an interactive webapp with a to scale model of the solar system and accurate orbit simulation."
           shortDesc="Made for NASA Space Apps..."
-          techStack="ThreeJS, TypeScript, Vite, Firebase, HTML/CSS, Git"
+          techStack="ThreeJS, TypeScript, Vite, Firebase, HTML, CSS"
           githubLink="https://github.com/jwlebert/spaceapps-2024"
           webappLink="https://spaceapps-2024.web.app/"
           videoLink="https://youtu.be/dSeUayV1NOw"
@@ -166,7 +168,7 @@ export const Projects = ({ projectRef }) => {
           title="EcoWatch"
           desc="Made for Winhacks 2024, this is a social networking app with a focus on inspiring community oriented enviormental activism by creating community challenges and leaderboards."
           shortDesc="Made for Winhacks 2024..."
-          techStack="React, Vite, Firebase, Tailwind CSS, Git"
+          techStack="React, Vite, Firebase, Tailwind CSS"
           githubLink="https://github.com/jwlebert/EcoWatch"
           webappLink="https://ecowatch-c3a72.web.app/"
           image={EcoWatch}
