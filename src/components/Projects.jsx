@@ -49,7 +49,7 @@ const ProjectCard = ({
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs sm:text-sm border-1 border-primaryText/10 px-2 py-1 rounded-3xl hover:border-primaryText/20 cursor-default"
+                  className="text-xs sm:text-sm border-1 shadow-xs border-primaryText/10 px-2 py-1 rounded-xl hover:border-primaryText/20 hover:shadow-sm cursor-default"
                 >
                   {tech}
                 </span>
@@ -86,7 +86,7 @@ const ProjectCard = ({
               target="none"
               className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
             >
-              <FiGithub/>Github
+              <FiGithub/>Code
             </a>
           )}
           {webappLink && (
@@ -95,7 +95,7 @@ const ProjectCard = ({
               target="none"
               className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
             >
-              <MdOutlineWebAsset/>Webapp
+              <MdOutlineWebAsset/>Demo
             </a>
           )}
           {videoLink && (
