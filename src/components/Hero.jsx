@@ -20,15 +20,21 @@ const Hero = () => {
           <p className="text-lg text-primaryText/60 mb-8">
             Based in Windsor, ON <span className="text-primaryText">🍁</span>
           </p>
-          <button
-            className="group border-1 border-primaryText/50 shadow-md rounded-3xl p-3 flex justify-self-center items-center hover:scale-105"
-            onClick={() => {
-              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            View my work
-            <FaArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-[2px] transition-transform" />
-          </button>
+
+          {/* Center the button properly */}
+          <div className="flex justify-center">
+            <button
+              className="group border-1 border-primaryText/50 shadow-md rounded-3xl p-3 flex justify-self-center items-center hover:scale-105"
+              onClick={() => {
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              View my work
+              <FaArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-[2px] transition-transform" />
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>
