@@ -45,7 +45,7 @@ const ProjectCard = ({
         <h3 className="text-lg font-bold">{title}</h3>
         <div className="min-h-18">
           {
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap gap-2">
               {techStack.map((tech) => (
                 <span
                   key={tech}
