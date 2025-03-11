@@ -5,6 +5,8 @@ import Orrery from "/assets/Orrery.png";
 import Remora from "/assets/Remora.png";
 import Datarai from "/assets/Datarai.png";
 
+import { motion } from "framer-motion";
+
 const ProjectCard = ({
   title,
   desc,
@@ -25,7 +27,7 @@ const ProjectCard = ({
   techStack = techStack.split(", ");
 
   return (
-    <div className="bg-background2/30 rounded-2xl pb-4">
+    <div className="bg-background2/30 shadow-md rounded-2xl pb-4">
       {image && (
         <>
           <div
@@ -55,9 +57,9 @@ const ProjectCard = ({
         </div>
         {showDesc ? (
           <>
-            <p className="text-primaryText/40 mt-4">{desc}</p>
+            <p className="text-primaryText mt-4">{desc}</p>
             <p
-              className="test-primaryText underline hover:cursor-pointer"
+              className="text-primaryText/40 underline hover:cursor-pointer"
               onClick={toggleDesc}
             >
               Show Less
@@ -65,9 +67,9 @@ const ProjectCard = ({
           </>
         ) : (
           <>
-            <p className="text-primaryText/40 mt-4">{shortDesc}</p>
+            <p className="text-primaryText mt-4">{shortDesc}</p>
             <p
-              className="test-primaryText underline hover:cursor-pointer"
+              className="text-primaryText/40 underline hover:cursor-pointer"
               onClick={toggleDesc}
             >
               Show More
@@ -113,13 +115,19 @@ export const Projects = ({ projectRef }) => {
   return (
     <section
       ref={projectRef}
-      id="projects"
       className="mt-16 px-6 sm:flex-col sm:justify-center w-full text-primaryText"
     >
       <h2 className="text-xl sm:text-2xl font-bold mb-4">Personal Projects</h2>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 * 0.1 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
         <ProjectCard
+          index={0}
           title="Datarai (Prototype)"
           desc="An AI-powered full-stack web app for analyzing and visualizing data."
           shortDesc="An AI-powered full-stack web app..."
@@ -130,6 +138,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-50"
         />
         <ProjectCard
+          index={1}
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With a features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
           shortDesc="Engaging web app designed for..."
@@ -141,6 +150,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-100"
         />
         <ProjectCard
+          index={2}
           title="Orrery, or Are We?"
           desc="Made for NASA Space Apps, this project is an interactive webapp with a to scale model of the solar system and accurate orbit simulation."
           shortDesc="Made for NASA Space Apps..."
@@ -152,6 +162,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-300"
         />
         <ProjectCard
+          index={3}
           title="EcoWatch"
           desc="Made for Winhacks 2024, this is a social networking app with a focus on inspiring community oriented enviormental activism by creating community challenges and leaderboards."
           shortDesc="Made for Winhacks 2024..."
@@ -162,6 +173,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-700"
         />
         <ProjectCard
+          index={4}
           title="Remora"
           desc="Interpreted programming language with basic features such as strings, arrays and functions."
           shortDesc="Interpreted programming language..."
@@ -170,7 +182,7 @@ export const Projects = ({ projectRef }) => {
           image={Remora}
           imageColor="bg-amber-900"
         />
-      </section>
+      </motion.div>
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 export const AboutMe = ({ aboutRef }) => {
   return (
@@ -8,7 +9,13 @@ export const AboutMe = ({ aboutRef }) => {
       className="mt-16 px-6 sm:flex-col sm:justify-center w-full text-primaryText"
     >
       <h2 className="text-xl sm:text-2xl font-bold mb-4">About Me</h2>
-      <p className="text-sm sm:text-lg text-primaryText/40">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 * 0.1 }}
+        viewport={{ once: true }}
+        className="text-sm sm:text-lg text-primaryText/60"
+      >
         I am a student at the University of Windsor, and my goal is to explore
         the world of computer science and software development through practical
         experience. I welcome challenging problems and am always working on
@@ -53,7 +60,7 @@ export const AboutMe = ({ aboutRef }) => {
           resume
         </a>{" "}
         for more information on my skills and experience.
-      </p>
+      </motion.div>
     </section>
   );
 };

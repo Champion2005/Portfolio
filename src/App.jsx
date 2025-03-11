@@ -1,37 +1,37 @@
-import './App.css'
+import "./App.css";
 
-import React from 'react'
+import React from "react";
 
-import { Intro } from './components/Intro'
-import { AboutMe } from './components/AboutMe'
-import { Projects } from './components/Projects'
-import Skills from './components/Skills'
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import { AboutMe } from "./components/AboutMe";
+import { Projects } from "./components/Projects";
+import Skills from "./components/Skills";
 
 function App() {
   const aboutRef = React.useRef(null);
   const skillRef = React.useRef(null);
   const projectRef = React.useRef(null);
   return (
-    <div className='flex flex-col items-center cursor-default'>
-      <>
-      <div className="lg:flex justify-center sm:w-10/12 mb-12">
-        <Intro aboutRef={aboutRef} projectRef={projectRef} skillRef={skillRef}/>
-        <div className="">
+    <div className="">
+      <Navbar />
+      <div className="flex flex-col items-center cursor-default">
+        <Hero />
+        <div className="flex justify-center sm:w-10/12 mb-12">
           <AboutMe className="" aboutRef={aboutRef} />
         </div>
+        <div id="projects" className="flex justify-center sm:w-10/12 mb-12">
+          <Projects projectRef={projectRef} />
+        </div>
+        <div className="flex justify-center sm:w-10/12 mb-12">
+          <Skills skillRef={skillRef} />
+        </div>
+        <div className="flex justify-center">
+          <p className="text-primaryText ">© {new Date().getFullYear()} Aditya Patel ❤️</p>
+        </div>
       </div>
-      <div className="flex justify-center sm:w-10/12 mb-12">
-        <Projects projectRef={projectRef} />
-      </div>
-      <div className="flex justify-center sm:w-10/12 mb-12">
-        <Skills skillRef={skillRef} />
-      </div>
-      <div className="flex justify-center">
-        <p className="text-white/40 ">© 2025 Aditya Patel ❤️</p>
-      </div>
-      </>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
