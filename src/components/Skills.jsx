@@ -94,7 +94,7 @@ const Skills = ({ skillRef }) => {
         {currentStack.map((tech, index) => (
           <div
             key={index}
-            className="bg-background2/30 shadow-md rounded-2xl flex w-full items-center"
+            className="bg-background2/10 shadow-md rounded-2xl flex w-full items-center"
           >
             <img
               src={tech.image}
@@ -117,7 +117,7 @@ const Skills = ({ skillRef }) => {
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
         {skillsData.map((skillCategory, index) => (
-          <div className="bg-background2/30 shadow-md rounded-2xl px-6 py-4 h-60">
+          <div className="bg-background2/10 shadow-md rounded-2xl px-6 py-4 h-60">
             <h3 className="text-xl font-semibold mb-2">
               {skillCategory.category}
             </h3>
@@ -130,6 +130,7 @@ const Skills = ({ skillRef }) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 * idx, duration: 0.3 }}
                   viewport={{ once: true }}
+                  className="text-primaryText/60"
                 >
                   {skill}
                 </motion.li>

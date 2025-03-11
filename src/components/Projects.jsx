@@ -29,7 +29,7 @@ const ProjectCard = ({
   techStack = techStack.split(", ");
 
   return (
-    <div className="bg-background2/30 shadow-md rounded-2xl pb-4">
+    <div className="bg-background2/10 shadow-md rounded-2xl pb-4">
       {image && (
         <>
           <div
