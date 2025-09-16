@@ -15,7 +15,7 @@ const Hero = () => {
             Hi, I'm Aditya Patel
           </h1>
           <p className="text-xl md:text-2xl text-primaryText/80 mb-4">
-            2nd year CS student, aspiring Full-Stack Engineer
+            3rd year CS student, aspiring Full-Stack Engineer
           </p>
           <p className="text-lg text-primaryText/60 mb-8">
             Based in Windsor, ON <span className="text-primaryText">🍁</span>
