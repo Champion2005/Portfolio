@@ -4,8 +4,9 @@ import EcoWatch from "/assets/EcoWatch.png";
 import Orrery from "/assets/Orrery.png";
 import Remora from "/assets/Remora.png";
 import Datarai from "/assets/Datarai.png";
+import AmICooked from "/assets/AmICooked.png";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FiGithub, FiVideo } from "react-icons/fi";
 import { MdOutlineWebAsset } from "react-icons/md";
 
@@ -29,27 +30,35 @@ const ProjectCard = ({
   techStack = techStack.split(", ");
 
   return (
-    <div className="bg-background2/10 shadow-md rounded-2xl pb-4">
+    <motion.article
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.22 }}
+      className="group glass-panel overflow-hidden rounded-xl border pb-5"
+    >
       {image && (
-        <>
-          <div
-            className={
-              "flex justify-center h-48 w-full mb-4 rounded-t-2xl " + imageColor
-            }
-          >
-            <img src={image} alt={title} className="object-scale-down" />
-          </div>
-        </>
+        <div
+          className={
+            "relative mb-4 flex h-48 w-full justify-center overflow-hidden rounded-t-xl border-b border-[var(--border-soft)] " +
+            imageColor
+          }
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/5" />
+          <img
+            src={image}
+            alt={title}
+            className="object-scale-down transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
       )}
       <div className="flex flex-col px-6">
-        <h3 className="text-lg font-bold">{title}</h3>
-        <div className="min-h-18">
+        <h3 className="text-lg font-bold text-[var(--text-primary)]">{title}</h3>
+        <div className="min-h-16 pt-2">
           {
             <div className="flex flex-wrap gap-2">
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs sm:text-sm border-1 shadow-xs border-primaryText/10 px-2 py-1 rounded-xl hover:border-primaryText/20 hover:shadow-sm cursor-default"
+                  className="cursor-default rounded-lg border border-[var(--border-soft)] bg-[var(--surface-soft)] px-2 py-1 text-xs text-[var(--text-muted)] shadow-[0_4px_8px_rgba(47,69,80,0.06)] transition-colors duration-200 hover:border-[var(--border-strong)] sm:text-sm"
                 >
                   {tech}
                 </span>
@@ -59,9 +68,9 @@ const ProjectCard = ({
         </div>
         {showDesc ? (
           <>
-            <p className="text-primaryText mt-4">{desc}</p>
+            <p className="mt-4 text-[var(--text-primary)]/90">{desc}</p>
             <p
-              className="text-primaryText/40 underline hover:cursor-pointer hover:text-secondaryText"
+              className="mt-2 w-fit cursor-pointer text-sm font-medium text-[var(--text-muted)] underline decoration-[var(--border-strong)] underline-offset-4 transition-colors duration-200 hover:text-[var(--text-primary)]"
               onClick={toggleDesc}
             >
               Show Less
@@ -69,9 +78,9 @@ const ProjectCard = ({
           </>
         ) : (
           <>
-            <p className="text-primaryText mt-4">{shortDesc}</p>
+            <p className="mt-4 text-[var(--text-primary)]/90">{shortDesc}</p>
             <p
-              className="text-primaryText/40 underline hover:cursor-pointer hover:text-secondaryText"
+              className="mt-2 w-fit cursor-pointer text-sm font-medium text-[var(--text-muted)] underline decoration-[var(--border-strong)] underline-offset-4 transition-colors duration-200 hover:text-[var(--text-primary)]"
               onClick={toggleDesc}
             >
               Show More
@@ -79,37 +88,40 @@ const ProjectCard = ({
           </>
         )}
 
-        <div className="flex gap-4 mt-4 justify-self-end">
+        <div className="mt-5 flex gap-4 justify-self-end">
           {githubLink && (
             <a
               href={githubLink}
-              target="none"
-              className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
             >
-              <FiGithub/>Code
+              <FiGithub />Code
             </a>
           )}
           {webappLink && (
             <a
               href={webappLink}
-              target="none"
-              className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
             >
-              <MdOutlineWebAsset/>Demo
+              <MdOutlineWebAsset />Demo
             </a>
           )}
           {videoLink && (
             <a
               href={videoLink}
-              target="none"
-              className="flex items-center gap-1 text-m sm:text-l text-secondaryText/60 hover:text-secondaryText"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
             >
-              <FiVideo/>Video
+              <FiVideo />Video
             </a>
           )}
         </div>
       </div>
-    </div>
+    </motion.article>
   );
 };
 
@@ -117,19 +129,32 @@ export const Projects = ({ projectRef }) => {
   return (
     <section
       ref={projectRef}
-      className="mt-16 px-6 sm:flex-col sm:justify-center w-full text-primaryText"
+      className="w-full text-[var(--text-primary)]"
     >
-      <h2 className="text-xl sm:text-2xl font-bold mb-4">Personal Projects</h2>
+      <h2 className="section-heading mb-5 text-xl font-bold sm:text-3xl">Personal Projects</h2>
+      <div className="flat-accent-line mb-6" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1 * 0.1 }}
+        transition={{ duration: 0.45, delay: 0.08 }}
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
       >
         <ProjectCard
           index={0}
+          title="AmICooked"
+          desc="An AI-powered GitHub portfolio auditor designed to give developers a brutally honest reality check on their employability. By analyzing granular account data, the platform determines if a user's career prospects are 'cooked' and provides a personalized roadmap to recovery."
+          shortDesc="An AI-powered GitHub portfolio auditor..."
+          techStack="React, Vite, Firebase, Tailwind CSS, Github API, OpenRouter API"
+          githubLink="https://github.com/Champion2005/amicooked"
+          webappLink="https://amicooked-b65b3.web.app/"
+          videoLink="https://youtu.be/ahWcLSCP2qk"
+          image={AmICooked}
+          imageColor="bg-black"
+        />
+        <ProjectCard
+          index={1}
           title="Datarai (Prototype)"
           desc="An AI-powered full-stack web app for analyzing and visualizing data."
           shortDesc="An AI-powered full-stack web app..."
@@ -140,7 +165,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-50"
         />
         <ProjectCard
-          index={1}
+          index={2}
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With a features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
           shortDesc="Engaging web app designed for..."
@@ -152,7 +177,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-100"
         />
         <ProjectCard
-          index={2}
+          index={3}
           title="Orrery, or Are We?"
           desc="Made for NASA Space Apps, this project is an interactive webapp with a to scale model of the solar system and accurate orbit simulation."
           shortDesc="Made for NASA Space Apps..."
@@ -164,7 +189,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-300"
         />
         <ProjectCard
-          index={3}
+          index={4}
           title="EcoWatch"
           desc="Made for Winhacks 2024, this is a social networking app with a focus on inspiring community oriented enviormental activism by creating community challenges and leaderboards."
           shortDesc="Made for Winhacks 2024..."
@@ -175,7 +200,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-700"
         />
         <ProjectCard
-          index={4}
+          index={5}
           title="Remora"
           desc="Interpreted programming language with basic features such as strings, arrays and functions."
           shortDesc="Interpreted programming language..."

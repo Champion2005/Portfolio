@@ -1,20 +1,126 @@
 @import "tailwindcss";
 
 @theme {
-
-  --color-background1: #e9ecef;
-  --color-background2: #ccc5b9;
-  --color-primaryText: #252422;
-  --color-secondaryText: #403d39;
-  --color-accent: #eb5e28;
-
-  --default-font-family: 'Inter', sans-serif;
-
+  --default-font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html, body {
-  font-family: 'Inter', sans-serif;
+:root {
+  --bg-primary: #f4f4f9;
+  --bg-secondary: #ecebf3;
+  --surface: #ffffff;
+  --surface-soft: #f7f7fb;
+  --text-primary: #2f4550;
+  --text-muted: #5a6f79;
+  --border-soft: rgba(47, 69, 80, 0.12);
+  --border-strong: rgba(47, 69, 80, 0.22);
+  --hero-glow: rgba(184, 219, 217, 0.42);
+  --orb-purple: rgba(175, 188, 204, 0.18);
+  --orb-cyan: rgba(184, 219, 217, 0.26);
+  --orb-rose: rgba(204, 197, 185, 0.28);
+  --accent: #8ec6c3;
+  --accent-strong: #5e9d99;
+}
+
+.dark {
+  --bg-primary: #000000;
+  --bg-secondary: #020406;
+  --surface: #0a0f14;
+  --surface-soft: #101720;
+  --text-primary: #deedf4;
+  --text-muted: #8fa7b3;
+  --border-soft: rgba(143, 167, 179, 0.22);
+  --border-strong: rgba(184, 219, 217, 0.36);
+  --hero-glow: rgba(120, 176, 196, 0.18);
+  --orb-purple: rgba(69, 95, 115, 0.22);
+  --orb-cyan: rgba(97, 155, 178, 0.2);
+  --orb-rose: rgba(88, 121, 138, 0.14);
+  --accent: #88bdd3;
+  --accent-strong: #66a6c4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
   margin: 0;
-  background: radial-gradient(circle at top left, var(--color-background2) 0%, var(--color-background1) 50%), no-repeat, var(--color-background1);
+  background:
+    radial-gradient(circle at 8% 4%, rgba(184, 219, 217, 0.38), transparent 34%),
+    radial-gradient(circle at 86% 22%, rgba(204, 197, 185, 0.28), transparent 37%),
+    radial-gradient(circle at 54% 84%, rgba(149, 165, 182, 0.16), transparent 44%),
+    linear-gradient(145deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-primary);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 10% 8%, rgba(102, 166, 196, 0.12), transparent 30%),
+    radial-gradient(circle at 88% 20%, rgba(136, 189, 211, 0.1), transparent 34%),
+    radial-gradient(circle at 50% 84%, rgba(102, 166, 196, 0.08), transparent 40%),
+    linear-gradient(165deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: var(--surface);
+  border-color: var(--border-soft);
+  box-shadow:
+    0 14px 28px rgba(30, 41, 59, 0.08),
+    0 3px 6px rgba(30, 41, 59, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.4rem;
+  width: 2.4rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-soft);
+  color: var(--text-primary);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 8px 14px rgba(30, 41, 59, 0.09);
+}
+
+.icon-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: var(--surface);
+  border-color: var(--border-strong);
+}
+
+.section-heading {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flat-accent-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

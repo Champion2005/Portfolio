@@ -9,7 +9,7 @@ import ViteIcon from "/assets/vite.svg";
 import GCPIcon from "/assets/gcp.svg";
 import PythonIcon from "/assets/python.svg";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const currentStack = [
   {
@@ -49,7 +49,7 @@ const currentStack = [
 const skillsData = [
   {
     category: "Languages",
-    skills: ["Python", "Java", "C++", "C", "Rust", "Lua", "PHP"],
+    skills: ["Python", "Java", "C++", "C", "Rust", "Lua", "Terraform"],
   },
   {
     category: "Frontend",
@@ -68,7 +68,7 @@ const skillsData = [
   },
   {
     category: "Dev Tools",
-    skills: ["Git", "Linux", "Google Cloud", "AWS", "Firebase", "Supabase"],
+    skills: ["Git", "Linux", "Google Cloud", "Azure", "Firebase", "Docker", "Ansible"],
   },
 ];
 
@@ -77,52 +77,58 @@ const Skills = ({ skillRef }) => {
     <section
       ref={skillRef}
       id="skills"
-      className="mt-16 px-6 sm:flex-col sm:justify-center w-full text-primaryText"
+      className="w-full text-[var(--text-primary)]"
     >
-      <h2 className="text-xl sm:text-2xl font-bold mb-4">Technical Skills</h2>
-      <h3 className="text-lg sm:text-xl font-bold">Main Skills</h3>
-      <p className="text-primaryText/50 mb-4">
+      <h2 className="section-heading mb-4 text-xl font-bold sm:text-3xl">Technical Skills</h2>
+      <div className="flat-accent-line mb-6" />
+      <h3 className="text-lg font-bold sm:text-xl">Main Skills</h3>
+      <p className="mb-4 text-[var(--text-muted)]">
         These are my most used technologies
       </p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1 * 0.1 }}
+        transition={{ duration: 0.45, delay: 0.08 }}
         viewport={{ once: true }}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+        className="flex flex-wrap justify-center gap-4"
       >
         {currentStack.map((tech, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-background2/10 shadow-md rounded-2xl flex w-full items-center"
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="glass-panel flex w-full items-center rounded-xl border px-1 sm:basis-[calc(50%-0.5rem)] md:basis-[calc(33.333%-0.75rem)]"
           >
             <img
               src={tech.image}
               alt={tech.tech}
-              className="h-10 w-10 justify-self-start m-4"
+              className="m-4 h-10 w-10 justify-self-start"
             />
-            <h3 className="text-xl font-semibold">{tech.tech}</h3>
-          </div>
+            <h3 className="text-xl font-semibold text-[var(--text-primary)]">{tech.tech}</h3>
+          </motion.div>
         ))}
       </motion.div>
-      <h3 className="text-lg sm:text-xl font-bold mt-4">All Skills</h3>
-      <p className="text-primaryText/50 mb-4">
+      <h3 className="mt-6 text-lg font-bold sm:text-xl">All Skills</h3>
+      <p className="mb-4 text-[var(--text-muted)]">
         These are all the technologies I am familiar with
       </p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1 * 0.1 }}
+        transition={{ duration: 0.45, delay: 0.08 }}
         viewport={{ once: true }}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {skillsData.map((skillCategory, index) => (
-          <div className="bg-background2/10 shadow-md rounded-2xl px-6 py-4 h-60">
-            <h3 className="text-xl font-semibold mb-2">
+          <div
+            key={skillCategory.category}
+            className="glass-panel rounded-xl border px-6 py-4"
+          >
+            <h3 className="mb-2 text-xl font-semibold text-[var(--text-primary)]">
               {skillCategory.category}
             </h3>
 
-            <ul className="list-disc list-inside">
+            <ul className="list-disc list-inside space-y-0.5">
               {skillCategory.skills.map((skill, idx) => (
                 <motion.li
                   key={idx}
@@ -130,7 +136,7 @@ const Skills = ({ skillRef }) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 * idx, duration: 0.3 }}
                   viewport={{ once: true }}
-                  className="text-primaryText/60"
+                  className="text-[var(--text-muted)]"
                 >
                   {skill}
                 </motion.li>
