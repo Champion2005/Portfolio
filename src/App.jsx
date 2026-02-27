@@ -7,6 +7,7 @@ import Hero from "./components/Hero";
 import { AboutMe } from "./components/AboutMe";
 import { Projects } from "./components/Projects";
 import Skills from "./components/Skills";
+import Experience from "./components/Experience";
 import ParticleBackdrop from "./components/ParticleBackdrop";
 import { useTheme } from "./hooks/useTheme";
 
@@ -16,6 +17,7 @@ import { motion } from "motion/react";
 function App() {
   const { theme, toggleTheme } = useTheme();
   const aboutRef = React.useRef(null);
+  const experienceRef = React.useRef(null);
   const skillRef = React.useRef(null);
   const projectRef = React.useRef(null);
 
@@ -43,6 +45,17 @@ function App() {
             transition={{ duration: 0.5 }}
           >
             <AboutMe aboutRef={aboutRef} />
+          </motion.div>
+
+          <motion.div
+            id="experience"
+            className="mb-14 w-full scroll-mt-28"
+            initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Experience experienceRef={experienceRef} />
           </motion.div>
 
           <motion.div
