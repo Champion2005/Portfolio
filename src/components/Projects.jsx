@@ -162,7 +162,7 @@ export const Projects = ({ projectRef }) => {
         />
         <ProjectCard
           index={2}
-          title="Datarai (Prototype)"
+          title="Datarai"
           desc="An AI-powered full-stack web app for analyzing and visualizing data."
           techStack="React, Vite, Firebase, Tailwind CSS, Gemini API, Google Cloud, Node.js"
           githubLink="https://github.com/Champion2005/Datarai"
