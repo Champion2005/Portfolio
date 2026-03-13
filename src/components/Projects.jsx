@@ -6,6 +6,7 @@ import Remora from "/assets/Remora.png";
 import Datarai from "/assets/Datarai.png";
 import AmICooked from "/assets/AmICooked.png";
 import NbPull from "/assets/nbpull.png";
+import BotBlocks from "/assets/botblocks.png";
 
 import { motion } from "motion/react";
 import { FiGithub, FiVideo, FiPackage } from "react-icons/fi";
@@ -140,7 +141,7 @@ export const Projects = ({ projectRef }) => {
         className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
       >
         <ProjectCard
-          index={0}
+          index={1}
           title="AmICooked"
           desc="An AI-powered GitHub portfolio auditor designed to give developers a brutally honest reality check on their employability. By analyzing granular account data, the platform determines if a user's career prospects are 'cooked' and provides a personalized roadmap to recovery."
           techStack="React, Vite, Firebase, Tailwind CSS, Github API, OpenRouter API"
@@ -151,7 +152,17 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-black"
         />
         <ProjectCard
-          index={1}
+          index={2}
+          title="BotBlocks"
+          desc="Browser-based robotics simulation with AI agents. No setup required — runs entirely in-browser using Three.js, Pyodide (Python in WebAssembly), and LLM-powered reasoning. My additions: an AI agent system — robots can be given LLM-powered brains via OpenRouter that observe the world, reason via tool-calling loops, and act autonomously. Includes built-in tools (navigation, vision, motor control), custom tool support, camera controls in the sim, and a live AI activity log."
+          techStack="React, Three.js, Pyodide, CodeMirror, Tailwind CSS, Vite, OpenRouter API"
+          githubLink="https://github.com/Champion2005/botblocks"
+          webappLink="https://botblock-v1.web.app/"
+          image={BotBlocks}
+          imageColor="bg-orange-900"
+        />
+        <ProjectCard
+          index={3}
           title="nbpull"
           desc="Read-only CLI tool to pull IPAM data from NetBox. Features async HTTP with automatic pagination, rich table output, batch queries from TOML files, and strict typing with Pydantic v2. Hardcoded to GET-only requests for guaranteed safety."
           techStack="Python, Typer, httpx, Pydantic, Rich"
@@ -161,7 +172,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-gray-900"
         />
         <ProjectCard
-          index={2}
+          index={4}
           title="Datarai"
           desc="An AI-powered full-stack web app for analyzing and visualizing data."
           techStack="React, Vite, Firebase, Tailwind CSS, Gemini API, Google Cloud, Node.js"
@@ -171,7 +182,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-50"
         />
         <ProjectCard
-          index={3}
+          index={5}
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
           techStack="React, Vite, Firebase, HTML, CSS"
@@ -182,7 +193,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-100"
         />
         <ProjectCard
-          index={4}
+          index={6}
           title="Orrery, or Are We?"
           desc="Made for NASA Space Apps, this project is an interactive webapp with a to scale model of the solar system and accurate orbit simulation."
           techStack="ThreeJS, TypeScript, Vite, Firebase, HTML, CSS"
@@ -193,7 +204,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-300"
         />
         <ProjectCard
-          index={5}
+          index={7}
           title="EcoWatch"
           desc="Made for Winhacks 2024, this is a social networking app with a focus on inspiring community oriented environmental activism by creating community challenges and leaderboards."
           techStack="React, Vite, Firebase, Tailwind CSS"
@@ -203,7 +214,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-700"
         />
         <ProjectCard
-          index={6}
+          index={8}
           title="Remora"
           desc="Interpreted programming language with basic features such as strings, arrays and functions."
           techStack="Python"
