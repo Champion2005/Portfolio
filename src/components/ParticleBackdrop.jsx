@@ -6,6 +6,15 @@ const ParticleBackdrop = ({ theme = "light" }) => {
   const [ready, setReady] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
+  const particleColors =
+    theme === "dark"
+      ? ["#66a6c4", "#88bdd3", "#a6d2e2"]
+      : ["#5a6f79", "#8ec6c3", "#2f4550"];
+
+  const twinkleColor = theme === "dark" ? "#9fd4ea" : "#97c4c1";
+  const glowShadowColor =
+    theme === "dark" ? "rgba(159, 212, 234, 0.22)" : "rgba(151, 196, 193, 0.2)";
+
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -35,10 +44,7 @@ const ParticleBackdrop = ({ theme = "light" }) => {
         fullScreen: { enable: false },
         particles: {
           color: {
-            value:
-              theme === "dark"
-                ? ["#66a6c4", "#88bdd3", "#a6d2e2"]
-                : ["#5a6f79", "#8ec6c3", "#2f4550"],
+            value: particleColors,
           },
           links: {
             color: theme === "dark" ? "#7eb4cc" : "#6d828b",
@@ -58,10 +64,33 @@ const ParticleBackdrop = ({ theme = "light" }) => {
           },
           opacity: {
             value: { min: 0.18, max: 0.55 },
+            animation: {
+              enable: !reducedMotion,
+              speed: 0.42,
+              minimumValue: 0.14,
+              sync: false,
+              startValue: "random",
+            },
           },
           shape: { type: ["circle"] },
           size: {
             value: { min: 2.5, max: 4 },
+          },
+          shadow: {
+            enable: !reducedMotion,
+            color: glowShadowColor,
+            blur: 10,
+            offset: { x: 0, y: 0 },
+            frequency: 0.2,
+            opacity: 0.52,
+          },
+          twinkle: {
+            particles: {
+              enable: !reducedMotion,
+              color: { value: twinkleColor },
+              frequency: 0.045,
+              opacity: 0.58,
+            },
           },
         },
         interactivity: {
