@@ -21,36 +21,26 @@ export const AboutMe = ({ aboutRef }) => {
         the world of computer science and software development through practical
         experience. I welcome challenging problems and am always working on
         solving something, whether it be for school or for a personal project. I
-        am always looking for new opportunites and experiences to learn and grow
+        am always looking for new opportunities and experiences to learn and grow
         as a developer.
         <br />
         <br />I have considerable experience with{" "}
-        <span className="font-semibold text-[var(--text-primary)]">Python, Java and React. </span>
-        During my time at <span className="font-semibold text-[var(--text-primary)]">Glendor</span>, I
-        completed a variety of tasks using Python extensively. I have also
-        worked on a few personal projects using React and Java. I am currently
-        working on improving my skills in{" "}
+        <span className="font-semibold text-[var(--text-primary)]">Python, React, and Automation. </span>
+        Currently, I am working as a Network Automation & Operations Intern at <span className="font-semibold text-[var(--text-primary)]">Enbridge</span>, 
+        where I focus on agentic workflows and network automation.
+        Previously, during my time at <span className="font-semibold text-[var(--text-primary)]">Glendor</span>, I
+        worked extensively with Python and LLMs. I am also continuously working on improving my skills in{" "}
         <span className="font-semibold text-[var(--text-primary)]">React and Full-Stack Web Dev</span>{" "}
-        by making{" "}
-        <a
-          href="https://prototype.datarai.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-semibold text-[var(--text-primary)] underline decoration-[var(--accent-strong)] decoration-2 underline-offset-4"
-        >
-          Datarai
-        </a>{" "}
-        as well as future projects.
+        by building out modern, interactive personal projects.
         <br />
         <br />
         My interests include{" "}
         <span className="font-semibold text-[var(--text-primary)]">
-          Machine Learning/Artificial Intelligence, Web Development, and
-          Robotics
+          Agentic Workflows, Machine Learning/Artificial Intelligence, and Web Development
         </span>
         . My goals are to work on projects that involve these fields and to
         learn as much as I can about them. I am also looking for startup
-        opportunites and ideas.
+        opportunities and ideas.
         <br />
         <br />
         Check out my{" "}
