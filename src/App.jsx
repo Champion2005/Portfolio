@@ -1,6 +1,7 @@
 import "./App.css";
 
 import React from "react";
+import { useAnalytics } from "./hooks/useAnalytics";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -14,8 +15,38 @@ import { useTheme } from "./hooks/useTheme";
 import { FaXTwitter } from "react-icons/fa6";
 import { motion } from "motion/react";
 
+const ContactFooterLink = () => {
+  const { trackEvent } = useAnalytics();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.45 }}
+      className="glass-panel flex min-h-28 flex-col items-center justify-between gap-4 rounded-xl border px-6 py-4 sm:flex-row"
+    >
+      <a
+        className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-primary)] shadow-[0_8px_14px_rgba(47,69,80,0.1)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent-strong)] hover:bg-[var(--surface)]"
+        href="https://x.com/adityapatel0905"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => trackEvent('social_link_click', { platform: 'twitter', location: 'footer' })}
+      >
+        <FaXTwitter className="h-4 w-4" />
+        Contact Me
+      </a>
+
+      <p className="text-center text-sm text-[var(--text-muted)]">
+        © {new Date().getFullYear()} Aditya Patel ❤️
+      </p>
+    </motion.div>
+  );
+};
+
 function App() {
   const { theme, toggleTheme } = useTheme();
+  useAnalytics(); // Initialize analytics
   const aboutRef = React.useRef(null);
   const experienceRef = React.useRef(null);
   const skillRef = React.useRef(null);
@@ -82,27 +113,7 @@ function App() {
         </main>
 
         <footer className="mx-auto w-full max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="glass-panel flex min-h-28 flex-col items-center justify-between gap-4 rounded-xl border px-6 py-4 sm:flex-row"
-          >
-            <a
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-strong)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[var(--text-primary)] shadow-[0_8px_14px_rgba(47,69,80,0.1)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--accent-strong)] hover:bg-[var(--surface)]"
-              href="https://x.com/adityapatel0905"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaXTwitter className="h-4 w-4" />
-              Contact Me
-            </a>
-
-            <p className="text-center text-sm text-[var(--text-muted)]">
-              © {new Date().getFullYear()} Aditya Patel ❤️
-            </p>
-          </motion.div>
+          <ContactFooterLink />
         </footer>
       </div>
       

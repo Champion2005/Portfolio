@@ -2,6 +2,7 @@ import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { LuFileText } from "react-icons/lu";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { motion } from "motion/react";
+import { useAnalytics } from "../hooks/useAnalytics";
 
 const sections = [
   { label: "About", href: "#about" },
@@ -11,6 +12,8 @@ const sections = [
 ];
 
 const Navbar = ({ theme, onToggleTheme }) => {
+  const { trackEvent } = useAnalytics();
+  
   return (
     <nav className="fixed top-4 z-50 w-full px-4 sm:px-6 lg:px-8">
       <motion.div
@@ -38,6 +41,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
+            onClick={() => trackEvent('social_link_click', { platform: 'github', location: 'navbar' })}
           >
             <FiGithub className="h-5 w-5" />
           </a>
@@ -47,6 +51,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
             href="/Aditya_Patel_resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('resume_download', { location: 'navbar' })}
           >
             <LuFileText className="h-5 w-5" />
             <span className="hidden sm:inline">Resume</span>
@@ -58,6 +63,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
+            onClick={() => trackEvent('social_link_click', { platform: 'linkedin', location: 'navbar' })}
           >
             <FiLinkedin className="h-5 w-5" />
           </a>

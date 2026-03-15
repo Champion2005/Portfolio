@@ -1,4 +1,5 @@
 import React from "react";
+import { useAnalytics } from "../hooks/useAnalytics";
 import ChopChop from "/assets/ChopChop.png";
 import EcoWatch from "/assets/EcoWatch.png";
 import Orrery from "/assets/Orrery.png";
@@ -25,6 +26,7 @@ const ProjectCard = ({
   image,
   imageColor,
 }) => {
+  const { trackEvent } = useAnalytics();
   const [expanded, setExpanded] = React.useState(false);
 
   techStack = techStack.split(", ");
@@ -86,6 +88,7 @@ const ProjectCard = ({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
+              onClick={() => trackEvent('project_link_click', { project: title, link_type: 'github' })}
             >
               <FiGithub />Code
             </a>
@@ -96,6 +99,7 @@ const ProjectCard = ({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
+              onClick={() => trackEvent('project_link_click', { project: title, link_type: 'pypi' })}
             >
               <FiPackage />PyPI
             </a>
@@ -106,6 +110,7 @@ const ProjectCard = ({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
+              onClick={() => trackEvent('project_link_click', { project: title, link_type: 'npm' })}
             >
               <FiPackage />npm
             </a>
@@ -116,6 +121,7 @@ const ProjectCard = ({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
+              onClick={() => trackEvent('project_link_click', { project: title, link_type: 'website' })}
             >
               <MdOutlineWebAsset />Website
             </a>
@@ -126,6 +132,7 @@ const ProjectCard = ({
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
+              onClick={() => trackEvent('project_link_click', { project: title, link_type: 'video' })}
             >
               <FiVideo />Video
             </a>

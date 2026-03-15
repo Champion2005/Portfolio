@@ -23,3 +23,8 @@ src/resume_tex/.build/
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables
+.env
+
+ANALYTICS_SETUP.md
