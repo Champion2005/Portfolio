@@ -46,7 +46,6 @@ const ContactFooterLink = () => {
 
 function App() {
   const { theme, toggleTheme } = useTheme();
-  useAnalytics(); // Initialize analytics
   const aboutRef = React.useRef(null);
   const experienceRef = React.useRef(null);
   const skillRef = React.useRef(null);
