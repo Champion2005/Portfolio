@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:resume": "node scripts/build-resume.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "clean:gh-pages-cache": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('node_modules/.cache/gh-pages', { recursive: true, force: true });\"",
@@ -31,6 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "gh-pages": "^6.3.0",
     "globals": "^15.12.0",
+    "node-latex-compiler": "^1.0.5",
     "tailwindcss": "^4.0.0-beta.8",
     "vite": "^6.0.1"
   },

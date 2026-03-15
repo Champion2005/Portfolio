@@ -1,0 +1,184 @@
+%-------------------------
+% Resume
+% Author : Aditya Patel
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{iftex}
+
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+\usepackage[sfdefault]{roboto} 
+\usepackage{fontawesome}
+
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-6pt} \scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-8pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}\vspace{-2pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-8pt}}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge Aditya Patel} \\ \vspace{1pt}
+    Windsor, ON \\ \vspace{1pt}
+     {adityapatel0905@gmail.com} $|$ {226-260-0363} $|$ \href{https://apatel.xyz/}{Website: apatel.xyz} $|$ \href{https://www.linkedin.com/in/aditya-patel52/}{LinkedIn: aditya-patel52}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+  \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+      Computer Science student with experience in cloud platforms (Azure, GCP), network automation, and AI/ML. Proficient in Python, Terraform, and Ansible, with a strong background in developing scalable full-stack applications and automating complex infrastructure workflows.
+    }}
+    \vspace{-6pt}
+ \end{itemize}
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, JavaScript, TypeScript, Java, C, C++, SQL, Rust, PHP, MySQL} \\
+     \textbf{Tools \& Cloud}{: Azure, Terraform, Ansible, NetBox IPAM, Git, Firebase, GCP, Docker, Supabase, AWS} \\
+     \textbf{Frameworks}{: React.js, Node.js, Express, Tailwind, PyTorch, pandas, NumPy, Scikit-learn, Matplotlib}
+    }}
+    \vspace{-6pt}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Bachelor of Computer Science (Honours)}{Sep. 2023 -- Apr. 2027}
+      {University of Windsor}{Windsor, ON}
+        \resumeItemListStart
+            \resumeItem{Minor in Mathematics}
+        \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Network Automation \& Operations Intern}{Jan. 2026 -- Present}
+      {Enbridge}{Chatham, ON}
+      \resumeItemListStart
+        \resumeItem{Currently contributing to enterprise network automation and cloud infrastructure initiatives by developing Python-based scripts and utilizing Azure cloud services.}
+        \resumeItem{Developing Infrastructure as Code (IaC) workflows with Terraform to streamline network deployments.}
+        \resumeItem{Managing IP address management (IPAM) and network documentation via NetBox to ensure data integrity.}
+        \resumeItem{Collaborating with senior engineers to identify manual bottlenecks and implement automated operational tasks.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Naval Warfare Officer}{Jan. 2024 -- Present}
+      {Royal Canadian Navy}{Windsor, ON}
+      \resumeItemListStart
+        \resumeItem{Served as Divisional Officer overseeing a cross-functional team of 17 personnel, directing day-to-day operations, welfare, and training while fostering mission effectiveness within the division.}
+        \resumeItem{Administered personnel management and training oversight, maintaining qualifications and readiness records.}
+        \resumeItem{Orchestrated multi-agency training exercises with participation from the RCMP, local police, and fire services.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Teaching Assistant}{Sep. 2024 -- Dec. 2025}
+      {University of Windsor}{Windsor, ON}
+      \resumeItemListStart
+        \resumeItem{Lead weekly lab sessions to consolidate course content for 70+ students, focusing on data structures and algorithms.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Software Development Intern}{Jan. 2024 -- Apr. 2024}
+      {Glendor, Inc}{Remote}
+      \resumeItemListStart
+        \resumeItem{Utilized local LLM models to redact personal information in medical documents, achieving 99\% accuracy.}
+        \resumeItem{Designed automated scripts in Python to evaluate model performance, reducing manual validation time by 20+ hours.}
+        \resumeItem{Generated custom data using Python to test LLM accuracy, ensuring robust evaluation across 500+ files.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+        \resumeProjectHeading{\href{https://github.com/Champion2005/amicooked}{{\textbf{amicooked}}} $|$ \emph{React, Tailwind, Firebase, GitHub API}}{2026}
+            \resumeItemListStart
+            \resumeItem{Developed a performance analysis tool for GitHub profiles, providing visual insights into contribution heatmaps.}
+            \resumeItem{Recognized as a finalist at WinHacks 2026 for innovative application design and data visualization.}
+            \resumeItemListEnd
+
+        \resumeProjectHeading{\href{https://github.com/Champion2005/nbpull}{{\textbf{nbpull}}} $|$ \emph{Python, NetBox API, Automation}}{2026}
+            \resumeItemListStart
+            \resumeItem{Engineered a Python utility to automate the extraction and synchronization of network data from NetBox IPAM.}
+            \resumeItem{Streamlined data processing workflows for network operations, reducing manual entry errors.}
+            \resumeItemListEnd
+
+        \resumeProjectHeading{\href{https://prototype.datarai.com}{{\textbf{Datarai}}} $|$ \emph{React, Node.js, GCP, Gemini API}}{2025}
+            \resumeItemListStart
+            \resumeItem{Built a full-stack platform for bulk data processing and AI-driven visual report generation.}
+            \resumeItem{Integrated Gemini API for predictive insights, enabling automated decision-making for large datasets.}
+            \resumeItemListEnd
+
+        \resumeProjectHeading{\href{https://github.com/Kataray/Winhacks2025}{{\textbf{Chop Chop}}} $|$ \emph{React, Firebase, Vite}}{2025}
+            \resumeItemListStart
+            \resumeItem{Engineered a full-stack study tool within 30 hours, optimizing for user engagement and seamless usability.}
+            \resumeItem{Implemented a robust Firebase-powered back-end, integrating core features for real-time collaboration.}
+            \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+\end{document}
