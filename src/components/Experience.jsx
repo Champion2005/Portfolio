@@ -10,7 +10,7 @@ const experiences = [
     current: true,
     url: "https://www.enbridge.com",
     bullets: [],
-    tags: ["Python", "Azure", "Terraform", "Ansible", "NetBox IPAM"],
+    tags: ["Python", "Azure", "Terraform", "Ansible", "NetBox IPAM", "Agentic Workflows"],
   },
   {
     company: "Glendor",
@@ -61,7 +61,7 @@ const Experience = ({ experienceRef }) => {
           >
             {/* Timeline dot */}
             <span
-              className={`absolute -left-[calc(2rem+5px)] top-1 flex h-3 w-3 items-center justify-center sm:-left-[calc(2.5rem+5px)] ${
+              className={`absolute -left-8 top-2 flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:-left-10 ${
                 exp.current ? "animate-pulse" : ""
               }`}
             >

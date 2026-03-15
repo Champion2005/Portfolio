@@ -48,7 +48,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <LuFileText className="h-4 w-4" />
+            <LuFileText className="h-5 w-5" />
             <span className="hidden sm:inline">Resume</span>
           </a>
 

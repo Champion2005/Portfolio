@@ -7,6 +7,7 @@ import Datarai from "/assets/Datarai.png";
 import AmICooked from "/assets/AmICooked.png";
 import NbPull from "/assets/nbpull.png";
 import BotBlocks from "/assets/botblocks.png";
+import Reforge from "/assets/reforge.png";
 
 import { motion } from "motion/react";
 import { FiGithub, FiVideo, FiPackage } from "react-icons/fi";
@@ -20,6 +21,7 @@ const ProjectCard = ({
   webappLink,
   videoLink,
   pypiLink,
+  npmLink,
   image,
   imageColor,
 }) => {
@@ -50,8 +52,8 @@ const ProjectCard = ({
       )}
       <div className="flex flex-col px-5">
         <h3 className="text-lg font-bold text-[var(--text-primary)]">{title}</h3>
-        <div className="min-h-14 pt-1.5">
-          <div className="flex flex-wrap gap-1.5">
+        <div className="h-16 overflow-hidden pt-1.5">
+          <div className="flex flex-wrap content-start gap-1.5">
             {techStack.map((tech) => (
               <span
                 key={tech}
@@ -98,6 +100,16 @@ const ProjectCard = ({
               <FiPackage />PyPI
             </a>
           )}
+          {npmLink && (
+            <a
+              href={npmLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
+            >
+              <FiPackage />npm
+            </a>
+          )}
           {webappLink && (
             <a
               href={webappLink}
@@ -105,7 +117,7 @@ const ProjectCard = ({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--text-muted)] transition-all duration-200 hover:-translate-y-0.5 hover:text-[var(--text-primary)] sm:text-base"
             >
-              <MdOutlineWebAsset />Demo
+              <MdOutlineWebAsset />Website
             </a>
           )}
           {videoLink && (
@@ -140,6 +152,7 @@ export const Projects = ({ projectRef }) => {
         viewport={{ once: true }}
         className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
       >
+
         <ProjectCard
           index={1}
           title="AmICooked"
@@ -153,28 +166,39 @@ export const Projects = ({ projectRef }) => {
         />
         <ProjectCard
           index={2}
+          title="Reforge"
+          desc="A TypeScript library that hardens LLM structured-output flows by repairing malformed JSON in microseconds, validating against Zod schemas, and generating efficient retry prompts when needed. It also provides a unified forge() pipeline for end-to-end provider calls, repair, validation, and auto-retry across OpenAI-compatible, Anthropic, and Gemini adapters."
+          techStack="TypeScript, Zod, React, Tailwind CSS, Firebase"
+          githubLink="https://github.com/Champion2005/reforge"
+          webappLink="https://reforge-ai-97558.web.app/"
+          npmLink="https://www.npmjs.com/package/reforge-ai"
+          image={Reforge}
+          imageColor="bg-zinc-900"
+        />
+        <ProjectCard
+          index={3}
           title="BotBlocks"
           desc="Browser-based robotics simulation with AI agents. No setup required — runs entirely in-browser using Three.js, Pyodide (Python in WebAssembly), and LLM-powered reasoning. My additions: an AI agent system — robots can be given LLM-powered brains via OpenRouter that observe the world, reason via tool-calling loops, and act autonomously. Includes built-in tools (navigation, vision, motor control), custom tool support, camera controls in the sim, and a live AI activity log."
           techStack="React, Three.js, Pyodide, CodeMirror, Tailwind CSS, Vite, OpenRouter API"
           githubLink="https://github.com/Champion2005/botblocks"
           webappLink="https://botblock-v1.web.app/"
           image={BotBlocks}
-          imageColor="bg-orange-900"
+          imageColor="bg-slate-700"
         />
         <ProjectCard
-          index={3}
+          index={4}
           title="nbpull"
           desc="Read-only CLI tool to pull IPAM data from NetBox. Features async HTTP with automatic pagination, rich table output, batch queries from TOML files, and strict typing with Pydantic v2. Hardcoded to GET-only requests for guaranteed safety."
           techStack="Python, Typer, httpx, Pydantic, Rich"
           githubLink="https://github.com/Champion2005/nbpull"
           pypiLink="https://pypi.org/project/nbpull/"
           image={NbPull}
-          imageColor="bg-gray-900"
+          imageColor="bg-taupe-700"
         />
         <ProjectCard
-          index={4}
+          index={5}
           title="Datarai"
-          desc="An AI-powered full-stack web app for analyzing and visualizing data."
+          desc="An AI-powered full-stack web app for data analysis and visualization that lets users talk directly to their datasets. Upload CSV or spreadsheet files, ask natural-language questions for statistics and insights, and generate customizable Python visualizations or ready-to-use charts in seconds."
           techStack="React, Vite, Firebase, Tailwind CSS, Gemini API, Google Cloud, Node.js"
           githubLink="https://github.com/Champion2005/Datarai"
           webappLink="https://prototype.datarai.com"
@@ -182,7 +206,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-50"
         />
         <ProjectCard
-          index={5}
+          index={6}
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
           techStack="React, Vite, Firebase, HTML, CSS"
@@ -193,7 +217,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-100"
         />
         <ProjectCard
-          index={6}
+          index={7}
           title="Orrery, or Are We?"
           desc="Made for NASA Space Apps, this project is an interactive webapp with a to scale model of the solar system and accurate orbit simulation."
           techStack="ThreeJS, TypeScript, Vite, Firebase, HTML, CSS"
@@ -201,10 +225,10 @@ export const Projects = ({ projectRef }) => {
           webappLink="https://spaceapps-2024.web.app/"
           videoLink="https://youtu.be/dSeUayV1NOw"
           image={Orrery}
-          imageColor="bg-amber-300"
+          imageColor="bg-amber-500"
         />
         <ProjectCard
-          index={7}
+          index={8}
           title="EcoWatch"
           desc="Made for Winhacks 2024, this is a social networking app with a focus on inspiring community oriented environmental activism by creating community challenges and leaderboards."
           techStack="React, Vite, Firebase, Tailwind CSS"
@@ -214,7 +238,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-700"
         />
         <ProjectCard
-          index={8}
+          index={9}
           title="Remora"
           desc="Interpreted programming language with basic features such as strings, arrays and functions."
           techStack="Python"
