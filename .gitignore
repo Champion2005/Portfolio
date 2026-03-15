@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 src/resume_tex/.build/
+src/resume_tex/archive/
 
 # Editor directories and files
 .vscode/*
