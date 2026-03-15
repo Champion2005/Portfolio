@@ -167,8 +167,8 @@ export const Projects = ({ projectRef }) => {
         <ProjectCard
           index={2}
           title="Reforge"
-          desc="A TypeScript library that hardens LLM structured-output flows by repairing malformed JSON in microseconds, validating against Zod schemas, and generating efficient retry prompts when needed. It also provides a unified forge() pipeline for end-to-end provider calls, repair, validation, and auto-retry across OpenAI-compatible, Anthropic, and Gemini adapters."
-          techStack="TypeScript, Zod, React, Tailwind CSS, Firebase"
+          desc="An agentic orchestration engine that converts probabilistic LLM outputs into deterministic behavior via native JSON repair (<5ms), semantic clamping, circuit breakers, and multi-hop telemetry. Provides guard() for instant repair and forge() for end-to-end orchestration with auto-retry across 10+ providers. Built with zero dependencies, sub-millisecond performance, and edge-ready runtime support."
+          techStack="TypeScript, Zod, Vitest, Vite, Node.js, Edge Runtime"
           githubLink="https://github.com/Champion2005/reforge"
           webappLink="https://reforge-ai-97558.web.app/"
           npmLink="https://www.npmjs.com/package/reforge-ai"
@@ -178,7 +178,7 @@ export const Projects = ({ projectRef }) => {
         <ProjectCard
           index={3}
           title="BotBlocks"
-          desc="Browser-based robotics simulation with AI agents. No setup required — runs entirely in-browser using Three.js, Pyodide (Python in WebAssembly), and LLM-powered reasoning. My additions: an AI agent system — robots can be given LLM-powered brains via OpenRouter that observe the world, reason via tool-calling loops, and act autonomously. Includes built-in tools (navigation, vision, motor control), custom tool support, camera controls in the sim, and a live AI activity log."
+          desc="Browser-based robotics simulator with zero-setup, in-browser execution using Three.js and Pyodide. Robots can be given LLM-powered brains via OpenRouter that observe, reason, and act autonomously using tool-calling loops. Includes built-in tools (navigation, vision, motor control), custom tool support, and live AI activity logging."
           techStack="React, Three.js, Pyodide, CodeMirror, Tailwind CSS, Vite, OpenRouter API"
           githubLink="https://github.com/Champion2005/botblocks"
           webappLink="https://botblock-v1.web.app/"
