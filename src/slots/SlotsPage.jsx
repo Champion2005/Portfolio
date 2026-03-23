@@ -151,6 +151,7 @@ const SlotsPage = () => {
   const [winningKeys, setWinningKeys] = React.useState(() => new Set());
   const [lastSpin, setLastSpin] = React.useState({ clusters: [], totalPayout: 0 });
   const audioRef = React.useRef(null);
+  const needsInteractionToPlayRef = React.useRef(false);
 
   React.useLayoutEffect(() => {
     const updateRowStep = () => {
@@ -264,6 +265,7 @@ const SlotsPage = () => {
     audioRef.current = audio;
 
     audio.play().catch(() => {
+      needsInteractionToPlayRef.current = true;
       console.info("[MUSIC] Autoplay blocked by browser policy. Music will start on next user interaction.");
     });
 
@@ -272,6 +274,40 @@ const SlotsPage = () => {
       audioRef.current = null;
     };
   }, []);
+
+  React.useEffect(() => {
+    const tryStartMusicFromInteraction = () => {
+      if (!isMusicOn) {
+        return;
+      }
+
+      const currentAudio = audioRef.current;
+      if (!currentAudio) {
+        return;
+      }
+
+      if (!needsInteractionToPlayRef.current && !currentAudio.paused) {
+        return;
+      }
+
+      currentAudio.play().then(() => {
+        needsInteractionToPlayRef.current = false;
+      }).catch(() => {
+        needsInteractionToPlayRef.current = true;
+      });
+    };
+
+    const interactionEvents = ["pointerdown", "touchstart", "keydown"];
+    interactionEvents.forEach((eventName) => {
+      window.addEventListener(eventName, tryStartMusicFromInteraction, { passive: true });
+    });
+
+    return () => {
+      interactionEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, tryStartMusicFromInteraction);
+      });
+    };
+  }, [isMusicOn]);
 
   const handleToggleMusic = () => {
     const audio = audioRef.current;
@@ -282,11 +318,13 @@ const SlotsPage = () => {
       if (audio) {
         if (nextValue) {
           audio.play().catch(() => {
+            needsInteractionToPlayRef.current = true;
             console.info("[MUSIC] Playback was blocked by browser policy until user interaction.");
           });
         } else {
           audio.pause();
           audio.currentTime = 0;
+          needsInteractionToPlayRef.current = false;
         }
       }
 
@@ -328,6 +366,7 @@ const SlotsPage = () => {
     setBankroll((currentBankroll) => roundCurrency(currentBankroll - selectedBet));
     if (isMusicOn && audioRef.current?.paused) {
       audioRef.current.play().catch(() => {
+        needsInteractionToPlayRef.current = true;
         console.info("[MUSIC] Playback was blocked by browser policy until user interaction.");
       });
     }
