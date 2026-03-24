@@ -7,6 +7,7 @@ import {
   MIN_CLUSTER_SIZE,
   PAYTABLE_CAP_CLUSTER_SIZE,
   SLOT_SYMBOLS,
+  WILD_SYMBOL_ID,
 } from "./symbols.config";
 import {
   calculateClusterPayout,
@@ -40,8 +41,18 @@ const NORMAL_TILE_BG = "rgba(0, 85, 150, 0.9)";
 const FLASH_TILE_BG = "rgba(46, 168, 226, 0.98)";
 const HELP_AUTO_OPEN_MIN_WIDTH = 1000;
 const HELP_AUTO_OPEN_MIN_HEIGHT = 820;
+const WILD_MULTIPLIER_WEIGHTS = [
+  { multiplier: 1, weight: 50 },
+  { multiplier: 2, weight: 30 },
+  { multiplier: 4, weight: 8 },
+  { multiplier: 5, weight: 5 },
+  { multiplier: 8, weight: 4 },
+  { multiplier: 30, weight: 2 },
+  { multiplier: 50, weight: 1 },
+];
 const roundCurrency = (value) => Math.round((value + Number.EPSILON) * 100) / 100;
 const formatCurrency = (value) => roundCurrency(value).toFixed(2);
+const getClusterWildMultiplier = (cluster) => Math.max(1, Number(cluster?.wildMultiplier) || 1);
 
 const readSlotsSessionState = () => {
   try {
@@ -130,10 +141,74 @@ const getWinTierByMultiplier = (multiplier) => {
   return { title: "BIG WIN", accentClass: "text-[#ffcf01]" };
 };
 
+const pickWeightedWildMultiplier = (rng = Math.random) => {
+  const totalWeight = WILD_MULTIPLIER_WEIGHTS.reduce((sum, entry) => sum + entry.weight, 0);
+  const roll = rng() * totalWeight;
+  let runningWeight = 0;
+
+  for (const entry of WILD_MULTIPLIER_WEIGHTS) {
+    runningWeight += entry.weight;
+    if (roll <= runningWeight) {
+      return entry.multiplier;
+    }
+  }
+
+  return 1;
+};
+
+const toWildMultiplierKey = (row, column) => `${row}:${column}`;
+
+const getWildMultiplierByPosition = (cellGrid) => {
+  const multiplierByPosition = {};
+
+  for (let row = 0; row < cellGrid.length; row += 1) {
+    for (let column = 0; column < cellGrid[row].length; column += 1) {
+      const cell = cellGrid[row][column];
+      if (cell.symbolId === WILD_SYMBOL_ID) {
+        multiplierByPosition[toWildMultiplierKey(row, column)] = Number.isFinite(cell.wildMultiplier)
+          ? cell.wildMultiplier
+          : 1;
+      }
+    }
+  }
+
+  return multiplierByPosition;
+};
+
+const applyWildMultipliersToOutcome = ({ outcome, wildMultiplierByPosition }) => {
+  const clusters = outcome.clusters.map((cluster) => {
+    const activeWildMultipliers = cluster.wildPositions
+      .map((position) => {
+        const key = toWildMultiplierKey(position.row, position.column);
+        return Math.max(1, Number(wildMultiplierByPosition[key]) || 1);
+      })
+      .filter((value) => value > 1);
+
+    const clusterWildMultiplier = activeWildMultipliers.length > 0
+      ? activeWildMultipliers.reduce((sum, value) => sum + value, 0)
+      : 1;
+
+    return {
+      ...cluster,
+      wildMultiplier: clusterWildMultiplier,
+      payout: roundCurrency(cluster.payout * clusterWildMultiplier),
+    };
+  });
+
+  const totalPayout = roundCurrency(clusters.reduce((sum, cluster) => sum + cluster.payout, 0));
+
+  return {
+    ...outcome,
+    clusters,
+    totalPayout,
+  };
+};
+
 const createCellGridFromSymbols = ({ symbolGrid, nextCellIdRef }) => {
   return symbolGrid.map((row, rowIndex) => row.map((symbolId) => ({
     id: nextCellIdRef.current++,
     symbolId,
+    wildMultiplier: symbolId === WILD_SYMBOL_ID ? pickWeightedWildMultiplier() : null,
     isNew: true,
     dropRows: GRID_ROWS + rowIndex + 1,
     version: 0,
@@ -173,10 +248,15 @@ const applyCascadeGravity = ({ currentGrid, winningKeys, nextCellIdRef }) => {
     const spawnedCells = Array.from({ length: spawnCount }, (_, spawnIndex) => ({
       id: nextCellIdRef.current++,
       symbolId: createRandomSymbolId(),
+      wildMultiplier: null,
       isNew: true,
       dropRows: spawnCount + spawnIndex + 1,
       version: 0,
-    }));
+    })).map((cell) => (
+      cell.symbolId === WILD_SYMBOL_ID
+        ? { ...cell, wildMultiplier: pickWeightedWildMultiplier() }
+        : cell
+    ));
 
     const shiftedSurvivors = survivors.map((cell, index) => {
       const newRow = spawnCount + index;
@@ -270,6 +350,7 @@ const SlotsPage = () => {
   const winAudioRef = React.useRef(null);
   const popAudioRef = React.useRef(null);
   const needsInteractionToPlayRef = React.useRef(false);
+  const needsInteractionToPlayWinRef = React.useRef(true);
   const winCountAnimationFrameRef = React.useRef(null);
   const winFadeAnimationFrameRef = React.useRef(null);
   const popTimeoutsRef = React.useRef([]);
@@ -374,6 +455,41 @@ const SlotsPage = () => {
   const textSymbolFontPx = React.useMemo(() => {
     return Math.max(10, Math.round(cellSizePx * 0.6));
   }, [cellSizePx]);
+
+  const renderClusterBadge = React.useCallback((cluster, keyPrefix, compact = false) => {
+    const symbol = symbolsById[cluster.symbolId];
+    if (!symbol) {
+      return null;
+    }
+
+    const wildMultiplier = getClusterWildMultiplier(cluster);
+
+    return (
+      <span
+        key={`${keyPrefix}-${cluster.symbolId}-${cluster.size}-${wildMultiplier}`}
+        className={`inline-flex items-center gap-1 rounded-full border border-[#ffcf01]/45 bg-[#005596]/70 text-[#ffcf01] ${compact ? "px-2 py-1" : "px-2.5 py-1"}`}
+      >
+        {symbol.renderType === "asset" ? (
+          <img
+            src={symbol.assetPath}
+            alt={symbol.label}
+            className={`${compact ? "h-4 w-4" : "h-4.5 w-4.5"} object-contain`}
+            draggable="false"
+          />
+        ) : (
+          <span className="text-xs font-black leading-none">{symbol.label}</span>
+        )}
+        <span className={`font-bold leading-none ${compact ? "text-[10px]" : "text-[11px]"}`}>
+          x{cluster.size}
+        </span>
+        {wildMultiplier > 1 ? (
+          <span className={`rounded-full border border-[#ffcf01]/60 bg-[#ffcf01]/15 font-black leading-none ${compact ? "px-1 py-0.5 text-[9px]" : "px-1.5 py-0.5 text-[10px]"}`}>
+            WILD x{wildMultiplier}
+          </span>
+        ) : null}
+      </span>
+    );
+  }, [symbolsById]);
 
   const sortedWinHistory = React.useMemo(() => {
     const copiedHistory = [...winHistory];
@@ -489,6 +605,7 @@ const SlotsPage = () => {
     winAudio.preload = "auto";
     winAudio.load();
     winAudioRef.current = winAudio;
+    needsInteractionToPlayWinRef.current = true;
 
     return () => {
       if (winFadeAnimationFrameRef.current !== null) {
@@ -498,6 +615,7 @@ const SlotsPage = () => {
 
       winAudio.pause();
       winAudioRef.current = null;
+      needsInteractionToPlayWinRef.current = true;
     };
   }, []);
 
@@ -521,6 +639,25 @@ const SlotsPage = () => {
 
   React.useEffect(() => {
     const tryStartMusicFromInteraction = () => {
+      const unlockWinAudioIfNeeded = () => {
+        const winAudio = winAudioRef.current;
+        if (!winAudio || !needsInteractionToPlayWinRef.current) {
+          return;
+        }
+
+        const originalVolume = winAudio.volume;
+        winAudio.volume = 0;
+        winAudio.play().then(() => {
+          winAudio.pause();
+          winAudio.currentTime = 0;
+          winAudio.volume = originalVolume;
+          needsInteractionToPlayWinRef.current = false;
+        }).catch(() => {
+          winAudio.volume = originalVolume;
+          needsInteractionToPlayWinRef.current = true;
+        });
+      };
+
       if (!isMusicOn) {
         return;
       }
@@ -531,11 +668,13 @@ const SlotsPage = () => {
       }
 
       if (!needsInteractionToPlayRef.current && !currentAudio.paused) {
+        unlockWinAudioIfNeeded();
         return;
       }
 
       currentAudio.play().then(() => {
         needsInteractionToPlayRef.current = false;
+        unlockWinAudioIfNeeded();
       }).catch(() => {
         needsInteractionToPlayRef.current = true;
       });
@@ -630,6 +769,7 @@ const SlotsPage = () => {
     winAudio.volume = 0.6;
     winAudio.currentTime = 0;
     winAudio.play().catch(() => {
+      needsInteractionToPlayWinRef.current = true;
       console.info("[WIN MUSIC] Playback was blocked by browser policy until user interaction.");
     });
   }, [isMusicOn]);
@@ -729,11 +869,18 @@ const SlotsPage = () => {
       winCountAnimationFrameRef.current = null;
     }
 
-    setWinPopup((currentValue) => ({
-      ...currentValue,
-      displayAmount: currentValue.targetAmount,
-      isCounting: false,
-    }));
+    setWinPopup((currentValue) => {
+      const finalMultiplier = currentValue.targetAmount / Math.max(1, currentValue.bet || 1);
+      const finalTier = getWinTierByMultiplier(finalMultiplier);
+
+      return {
+        ...currentValue,
+        title: finalTier.title,
+        accentClass: finalTier.accentClass,
+        displayAmount: currentValue.targetAmount,
+        isCounting: false,
+      };
+    });
   }, []);
 
   const handleCloseWinPopup = React.useCallback(() => {
@@ -833,27 +980,32 @@ const SlotsPage = () => {
         bet: selectedBet,
       });
 
-      if (outcome.clusters.length === 0) {
+      const outcomeWithWildMultipliers = applyWildMultipliersToOutcome({
+        outcome,
+        wildMultiplierByPosition: getWildMultiplierByPosition(runningGrid),
+      });
+
+      if (outcomeWithWildMultipliers.clusters.length === 0) {
         if (combinedClusters.length === 0) {
           console.info("[CLUSTER DETECTED] None on this spin.");
         }
         break;
       }
 
-      outcome.clusters.forEach((cluster) => {
+      outcomeWithWildMultipliers.clusters.forEach((cluster) => {
         console.info(
-          `[CLUSTER DETECTED] Symbol: "${cluster.symbolId}", Size: ${cluster.size}, Payout: $${cluster.payout}`
+          `[CLUSTER DETECTED] Symbol: "${cluster.symbolId}", Size: ${cluster.size}, WildX: ${cluster.wildMultiplier}x, Payout: $${cluster.payout}`
         );
       });
 
-      combinedClusters = [...combinedClusters, ...outcome.clusters];
-      combinedPayout += outcome.totalPayout;
-      setBankroll((currentBankroll) => roundCurrency(currentBankroll + outcome.totalPayout));
+      combinedClusters = [...combinedClusters, ...outcomeWithWildMultipliers.clusters];
+      combinedPayout += outcomeWithWildMultipliers.totalPayout;
+      setBankroll((currentBankroll) => roundCurrency(currentBankroll + outcomeWithWildMultipliers.totalPayout));
 
-      const currentWinningKeys = getWinningKeySet(outcome.clusters);
+      const currentWinningKeys = getWinningKeySet(outcomeWithWildMultipliers.clusters);
       setWinningKeys(currentWinningKeys);
       await wait(timing.preImplodeMs);
-      playClusterImplodeSfx(outcome.clusters.length);
+      playClusterImplodeSfx(outcomeWithWildMultipliers.clusters.length);
       await wait(timing.implodeMs);
       await wait(timing.postWinGravityDelayMs);
 
@@ -883,6 +1035,11 @@ const SlotsPage = () => {
         multiplier: roundCurrency(combinedPayout / selectedBet),
         payout: roundCurrency(combinedPayout),
         bet: selectedBet,
+        clusters: combinedClusters.map((cluster) => ({
+          symbolId: cluster.symbolId,
+          size: cluster.size,
+          wildMultiplier: getClusterWildMultiplier(cluster),
+        })),
       };
 
       setWinHistory((currentHistory) => [winRecord, ...currentHistory].slice(0, MAX_WIN_HISTORY_ENTRIES));
@@ -1000,9 +1157,9 @@ const SlotsPage = () => {
                         className="h-[74%] w-[74%] object-contain"
                         draggable="false"
                       />
-                      {cell.symbolId === "WILD" ? (
-                        <span className="pointer-events-none absolute bottom-[8%] rounded-sm bg-[#033b5e]/78 px-1 py-0.5 text-[9px] font-black uppercase tracking-[0.08em] text-[#ffcf01]">
-                          Wild
+                      {cell.symbolId === "WILD" && (Number(cell.wildMultiplier) || 1) > 1 ? (
+                        <span className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center text-center text-[clamp(22px,7vw,40px)] font-black uppercase tracking-[0.06em] text-[#ffcf01] [text-shadow:0_3px_12px_rgba(0,0,0,0.85)]">
+                          x{Math.max(1, Number(cell.wildMultiplier) || 1)}
                         </span>
                       ) : null}
                     </>
@@ -1081,11 +1238,23 @@ const SlotsPage = () => {
             </div>
           </div>
 
-          <div className="mt-2 w-full text-center text-[11px] font-semibold uppercase tracking-[0.08em] text-[#b8dbd9] sm:text-xs">
-            Last Payout: ${formatCurrency(lastSpin.totalPayout)}
-            {lastSpin.clusters.length > 0
-              ? ` | Clusters: ${lastSpin.clusters.map((cluster) => `${cluster.symbolId} x${cluster.size}`).join(", ")}`
-              : " | Clusters: None"}
+          <div className="mt-2 flex h-[102px] w-full flex-col rounded-lg border border-[#ffcf01]/30 bg-[#005596]/28 px-2 py-2 text-center sm:h-[108px]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#b8dbd9] sm:text-xs">
+              Last Payout: ${formatCurrency(lastSpin.totalPayout)}
+            </p>
+            {lastSpin.clusters.length > 0 ? (
+              <div className="mt-1 h-12 overflow-x-auto overflow-y-hidden">
+                <div className="inline-flex min-h-full min-w-full items-center justify-center gap-1.5 px-0.5">
+                  {lastSpin.clusters.map((cluster, index) => renderClusterBadge(cluster, `last-${index}`))}
+                </div>
+              </div>
+            ) : (
+              <div className="mt-1 flex h-12 items-center justify-center">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#b8dbd9]/90 sm:text-[11px]">
+                  Clusters: None
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -1159,7 +1328,7 @@ const SlotsPage = () => {
               <div>
                 <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-[#ffcf01]">Pay Table</h2>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#b8dbd9] sm:text-xs">
-                  Bet Basis: ${selectedBet.toFixed(2)} | 12+ = 100x of 5-cluster
+                  Bet Basis: ${selectedBet.toFixed(2)} | 12+ = 10000x of 5-cluster
                 </p>
               </div>
               <button
@@ -1179,24 +1348,43 @@ const SlotsPage = () => {
               <summary className="cursor-pointer list-none text-xs font-bold uppercase tracking-[0.1em] text-[#ffcf01] sm:text-sm">
                 How The Game Works
               </summary>
-              <p className="mt-2 text-[11px] leading-relaxed text-[#b8dbd9] sm:text-xs">
-                Spin to generate a 7x6 board. Any orthogonally connected cluster of 5 or more matching symbols wins.
-                Winning symbols disappear, remaining symbols drop, and new symbols tumble in from above until no more wins remain.
-                WILD substitutes for adjacent symbols and prioritizes the highest-value valid cluster.
-              </p>
+              <div className="mt-2 space-y-2 text-[11px] leading-relaxed text-[#b8dbd9] sm:text-xs">
+                <p>
+                  Spin generates a 7x6 board. Any orthogonally connected cluster of 5 or more matching symbols wins.
+                  Winning symbols implode, survivors fall, and new symbols tumble in until no more clusters remain.
+                </p>
+                <p>
+                  Payout = sum of all winning clusters across the entire cascade sequence. Each cluster payout uses the
+                  selected bet and the pay table below (12+ pays as 12).
+                </p>
+                <p>
+                  WILD substitutes into nearby valid clusters and always prioritizes the highest-value cluster when shared.
+                  Each WILD rolls a multiplier from weighted chances (x1, x2, x4, x5, x8, x30, x50).
+                </p>
+                <p>
+                  If multiple boosted WILDs are in the same cluster, their multipliers combine additively (not multiplicatively).
+                  Example: x2 + x5 applies x7 to that cluster.
+                </p>
+              </div>
 
               <div className="mt-2 grid gap-2 sm:grid-cols-3">
                 <div className="rounded-md border border-[#ffcf01]/25 bg-[#005596]/55 px-2.5 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Current Features</p>
-                  <p className="mt-1 text-[11px] text-[#b8dbd9]">Cluster pays, cascades, WILD substitution, win counter, and selectable bet sizes.</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Win Flow</p>
+                  <p className="mt-1 text-[11px] text-[#b8dbd9]">
+                    Big-win popup triggers at 4x+ total spin payout, counts up slowly with tier upgrades, and supports skip/continue.
+                  </p>
                 </div>
-                <div className="rounded-md border border-dashed border-[#ffcf01]/35 bg-[#005596]/35 px-2.5 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Coming Soon</p>
-                  <p className="mt-1 text-[11px] text-[#b8dbd9]">Free Spins (placeholder)</p>
+                <div className="rounded-md border border-[#ffcf01]/25 bg-[#005596]/55 px-2.5 py-2">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Controls</p>
+                  <p className="mt-1 text-[11px] text-[#b8dbd9]">
+                    Settings include Spin Speed and Music toggle. Bet buttons and bankroll are below the grid.
+                  </p>
                 </div>
-                <div className="rounded-md border border-dashed border-[#ffcf01]/35 bg-[#005596]/35 px-2.5 py-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Roadmap</p>
-                  <p className="mt-1 text-[11px] text-[#b8dbd9]">Bonus modes and additional features (placeholder)</p>
+                <div className="rounded-md border border-[#ffcf01]/25 bg-[#005596]/55 px-2.5 py-2">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Tracking</p>
+                  <p className="mt-1 text-[11px] text-[#b8dbd9]">
+                    Last Payout shows cluster badges and WILD boosts. Win History stores session wins with symbols, bet, and payout.
+                  </p>
                 </div>
               </div>
             </details>
@@ -1240,7 +1428,7 @@ const SlotsPage = () => {
 
       {isHistoryOpen ? (
         <div className="absolute inset-0 z-40 flex items-center justify-center bg-[#033b5e]/70 px-4 backdrop-blur-sm">
-          <div className="w-full max-w-3xl rounded-2xl border border-[#ffcf01]/55 bg-[#005596] p-4 shadow-[0_26px_42px_rgba(3,59,94,0.55)]">
+          <div className="w-full max-w-5xl rounded-2xl border border-[#ffcf01]/55 bg-[#005596] p-4 shadow-[0_26px_42px_rgba(3,59,94,0.55)]">
             <div className="mb-3 flex items-center justify-between gap-2">
               <div>
                 <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-[#ffcf01]">Win History</h2>
@@ -1278,6 +1466,7 @@ const SlotsPage = () => {
                     <tr>
                       <th className="sticky top-0 z-10 border-b border-[#ffcf01]/30 bg-[#005596] px-3 py-2 font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Time</th>
                       <th className="sticky top-0 z-10 border-b border-[#ffcf01]/30 bg-[#005596] px-3 py-2 text-center font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Multiplier</th>
+                      <th className="sticky top-0 z-10 border-b border-[#ffcf01]/30 bg-[#005596] px-3 py-2 font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Clusters</th>
                       <th className="sticky top-0 z-10 border-b border-[#ffcf01]/30 bg-[#005596] px-3 py-2 text-center font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Bet</th>
                       <th className="sticky top-0 z-10 border-b border-[#ffcf01]/30 bg-[#005596] px-3 py-2 text-center font-bold uppercase tracking-[0.08em] text-[#ffcf01]">Payout</th>
                     </tr>
@@ -1290,6 +1479,17 @@ const SlotsPage = () => {
                         </td>
                         <td className="border-b border-[#ffcf01]/20 px-3 py-2 text-center font-bold text-[#ffcf01]">
                           {Number(entry.multiplier).toFixed(2)}x
+                        </td>
+                        <td className="border-b border-[#ffcf01]/20 px-3 py-2">
+                          {Array.isArray(entry.clusters) && entry.clusters.length > 0 ? (
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              {entry.clusters.map((cluster, index) => renderClusterBadge(cluster, `${entry.id}-${index}`, true))}
+                            </div>
+                          ) : (
+                            <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#b8dbd9]">
+                              Legacy Entry
+                            </span>
+                          )}
                         </td>
                         <td className="border-b border-[#ffcf01]/20 px-3 py-2 text-center font-semibold text-white">
                           ${formatCurrency(Number(entry.bet) || 0)}

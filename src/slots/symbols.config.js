@@ -3,8 +3,8 @@ export const GRID_ROWS = 6;
 export const MIN_CLUSTER_SIZE = 5;
 export const WILD_SYMBOL_ID = "WILD";
 export const PAYTABLE_CAP_CLUSTER_SIZE = 12;
-export const PAYTABLE_CAP_MULTIPLIER = 100;
-export const PAYTABLE_CURVE_EXPONENT = 2.7;
+export const PAYTABLE_CAP_MULTIPLIER = 10000;
+export const PAYTABLE_CURVE_EXPONENT = 6;
 
 export const SLOT_SYMBOLS = [
   {
@@ -15,7 +15,7 @@ export const SLOT_SYMBOLS = [
     assetPath: "/slots/assets/n1.svg",
     weight: 7,
     payoutTier: 8,
-    basePayoutMultiplier: 3.5,
+    basePayoutMultiplier: 1,
   },
   {
     id: "n2",
@@ -25,7 +25,7 @@ export const SLOT_SYMBOLS = [
     assetPath: "/slots/assets/n2.webp",
     weight: 10,
     payoutTier: 7,
-    basePayoutMultiplier: 2.3,
+    basePayoutMultiplier: 0.66,
   },
   {
     id: "n3",
@@ -35,7 +35,7 @@ export const SLOT_SYMBOLS = [
     assetPath: "/slots/assets/n3.webp",
     weight: 11,
     payoutTier: 6,
-    basePayoutMultiplier: 1.8,
+    basePayoutMultiplier: 0.51,
   },
   {
     id: "n4",
@@ -45,7 +45,7 @@ export const SLOT_SYMBOLS = [
     assetPath: "/slots/assets/n4.png",
     weight: 10,
     payoutTier: 5,
-    basePayoutMultiplier: 1.45,
+    basePayoutMultiplier: 0.41,
   },
   {
     id: "n5",
@@ -55,7 +55,7 @@ export const SLOT_SYMBOLS = [
     assetPath: "/slots/assets/n5.png",
     weight: 9,
     payoutTier: 4,
-    basePayoutMultiplier: 1.15,
+    basePayoutMultiplier: 0.33,
   },
   {
     id: "n6",
@@ -65,7 +65,7 @@ export const SLOT_SYMBOLS = [
     assetPath: "/slots/assets/n6.webp",
     weight: 8,
     payoutTier: 3,
-    basePayoutMultiplier: 0.95,
+    basePayoutMultiplier: 0.27,
   },
   {
     id: "A",
@@ -74,7 +74,7 @@ export const SLOT_SYMBOLS = [
     renderType: "text",
     weight: 16,
     payoutTier: 2,
-    basePayoutMultiplier: 0.66,
+    basePayoutMultiplier: 0.19,
   },
   {
     id: "K",
@@ -83,7 +83,7 @@ export const SLOT_SYMBOLS = [
     renderType: "text",
     weight: 15,
     payoutTier: 1,
-    basePayoutMultiplier: 0.49,
+    basePayoutMultiplier: 0.14,
   },
   {
     id: "Q",
@@ -92,7 +92,7 @@ export const SLOT_SYMBOLS = [
     renderType: "text",
     weight: 14,
     payoutTier: 0.8,
-    basePayoutMultiplier: 0.35,
+    basePayoutMultiplier: 0.1,
   },
   {
     id: "J",
@@ -101,7 +101,7 @@ export const SLOT_SYMBOLS = [
     renderType: "text",
     weight: 13,
     payoutTier: 0.6,
-    basePayoutMultiplier: 0.21,
+    basePayoutMultiplier: 0.06,
   },
   {
     id: "WILD",
@@ -109,7 +109,7 @@ export const SLOT_SYMBOLS = [
     kind: "special",
     renderType: "asset",
     assetPath: "/slots/assets/WILD.svg",
-    weight: 4,
+    weight: 2.5,
     payoutTier: 0,
   },
 ];
