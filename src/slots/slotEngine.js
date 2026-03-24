@@ -7,7 +7,7 @@ import {
   PAYTABLE_CURVE_EXPONENT,
   SLOT_SYMBOLS,
   WILD_SYMBOL_ID,
-} from "./symbols.config";
+} from "./symbols.config.js";
 
 const getTotalWeight = (symbols) => symbols.reduce((sum, symbol) => sum + symbol.weight, 0);
 
@@ -44,6 +44,40 @@ export const createRandomGrid = ({
   return Array.from({ length: rows }, () => (
     Array.from({ length: columns }, () => pickWeightedSymbol(symbols, totalWeight, rng))
   ));
+};
+
+export const createSpinStartGrid = ({
+  columns = GRID_COLUMNS,
+  rows = GRID_ROWS,
+  symbols = SLOT_SYMBOLS,
+  minimumClusterSize = MIN_CLUSTER_SIZE,
+  targetHitRate = 0.42,
+  maxAttempts = 30,
+  rng = Math.random,
+} = {}) => {
+  const shouldStartWithWin = rng() < targetHitRate;
+  const attempts = shouldStartWithWin ? maxAttempts : 1;
+  let lastGrid = createRandomGrid({ columns, rows, symbols, rng });
+
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    lastGrid = createRandomGrid({ columns, rows, symbols, rng });
+    const outcome = evaluateSpinOutcome({
+      grid: lastGrid,
+      bet: 1,
+      symbols,
+      minimumClusterSize,
+    });
+
+    if (shouldStartWithWin && outcome.clusters.length > 0) {
+      return lastGrid;
+    }
+
+    if (!shouldStartWithWin && outcome.clusters.length === 0) {
+      return lastGrid;
+    }
+  }
+
+  return lastGrid;
 };
 
 const DIRECTIONS = [
