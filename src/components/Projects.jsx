@@ -26,6 +26,7 @@ const ProjectCard = ({
   npmLink,
   image,
   imageColor,
+  imageFit = "object-scale-down",
 }) => {
   const { trackEvent } = useAnalytics();
   const [expanded, setExpanded] = React.useState(false);
@@ -49,7 +50,7 @@ const ProjectCard = ({
           <img
             src={image}
             alt={title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className={`h-full w-full ${imageFit} transition-transform duration-500 group-hover:scale-[1.03]`}
           />
         </div>
       )}
@@ -181,6 +182,7 @@ export const Projects = ({ projectRef }) => {
           webappLink="https://gork.apatel.xyz"
           image={Gork}
           imageColor="bg-blue-900"
+          imageFit="object-cover"
         />
         <ProjectCard
           index={3}
