@@ -9,6 +9,7 @@ import AmICooked from "/assets/AmICooked.png";
 import NbPull from "/assets/nbpull.png";
 import BotBlocks from "/assets/botblocks.png";
 import Reforge from "/assets/reforge.png";
+import Gork from "/assets/Gork.png";
 
 import { motion } from "motion/react";
 import { FiGithub, FiVideo, FiPackage } from "react-icons/fi";
@@ -48,7 +49,7 @@ const ProjectCard = ({
           <img
             src={image}
             alt={title}
-            className="object-scale-down transition-transform duration-500 group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
       )}
@@ -173,27 +174,37 @@ export const Projects = ({ projectRef }) => {
         />
         <ProjectCard
           index={2}
+          title="Gork"
+          desc="A comprehensive orchestration dashboard for Discord bots that provides real-time telemetry, model usage tracking, and automated audit logging. Features a rich UI for managing AI-driven personas, personal user memories (facts), and usage-based analytics across multiple LLM providers. Built to centralize bot operations with a focus on observability and chaotic witty engagement."
+          techStack="React, Vite, Discord.js, OpenRouter API, Bun, Tailwind CSS"
+          githubLink="https://github.com/Champion2005/gork"
+          webappLink="https://gork.apatel.xyz"
+          image={Gork}
+          imageColor="bg-blue-900"
+        />
+        <ProjectCard
+          index={3}
           title="Reforge"
           desc="An agentic orchestration engine that converts probabilistic LLM outputs into deterministic behavior via native JSON repair (<5ms), semantic clamping, circuit breakers, and multi-hop telemetry. Provides guard() for instant repair and forge() for end-to-end orchestration with auto-retry across 10+ providers. Built with zero dependencies, sub-millisecond performance, and edge-ready runtime support."
           techStack="TypeScript, Zod, Vitest, Vite, Node.js, Edge Runtime"
           githubLink="https://github.com/Champion2005/reforge"
-          webappLink="https://reforge-ai-97558.web.app/"
+          webappLink="https://reforge.apatel.xyz"
           npmLink="https://www.npmjs.com/package/reforge-ai"
           image={Reforge}
           imageColor="bg-zinc-900"
         />
         <ProjectCard
-          index={3}
+          index={4}
           title="BotBlocks"
           desc="Browser-based robotics simulator with zero-setup, in-browser execution using Three.js and Pyodide. Robots can be given LLM-powered brains via OpenRouter that observe, reason, and act autonomously using tool-calling loops. Includes built-in tools (navigation, vision, motor control), custom tool support, and live AI activity logging."
           techStack="React, Three.js, Pyodide, CodeMirror, Tailwind CSS, Vite, OpenRouter API"
           githubLink="https://github.com/Champion2005/botblocks"
-          webappLink="https://botblock-v1.web.app/"
+          webappLink="https://botblocks.apatel.xyz/"
           image={BotBlocks}
           imageColor="bg-slate-700"
         />
         <ProjectCard
-          index={4}
+          index={5}
           title="nbpull"
           desc="Read-only CLI tool to pull IPAM data from NetBox. Features async HTTP with automatic pagination, rich table output, batch queries from TOML files, and strict typing with Pydantic v2. Hardcoded to GET-only requests for guaranteed safety."
           techStack="Python, Typer, httpx, Pydantic, Rich"
@@ -203,7 +214,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-taupe-700"
         />
         <ProjectCard
-          index={5}
+          index={6}
           title="Datarai"
           desc="An AI-powered full-stack web app for data analysis and visualization that lets users talk directly to their datasets. Upload CSV or spreadsheet files, ask natural-language questions for statistics and insights, and generate customizable Python visualizations or ready-to-use charts in seconds."
           techStack="React, Vite, Firebase, Tailwind CSS, Gemini API, Google Cloud, Node.js"
@@ -213,7 +224,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-50"
         />
         <ProjectCard
-          index={6}
+          index={7}
           title="Chop Chop"
           desc="Engaging fullstack web app designed for studying. With features like a flashcard tool (you can create flashcard sets and use them to study), as well as a todo list and challenging quizzes to help you prepare. Gain points by using the site and unlock achievements."
           techStack="React, Vite, Firebase, HTML, CSS"
@@ -224,7 +235,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-100"
         />
         <ProjectCard
-          index={7}
+          index={8}
           title="Orrery, or Are We?"
           desc="Made for NASA Space Apps, this project is an interactive webapp with a to scale model of the solar system and accurate orbit simulation."
           techStack="ThreeJS, TypeScript, Vite, Firebase, HTML, CSS"
@@ -235,7 +246,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-500"
         />
         <ProjectCard
-          index={8}
+          index={9}
           title="EcoWatch"
           desc="Made for Winhacks 2024, this is a social networking app with a focus on inspiring community oriented environmental activism by creating community challenges and leaderboards."
           techStack="React, Vite, Firebase, Tailwind CSS"
@@ -245,7 +256,7 @@ export const Projects = ({ projectRef }) => {
           imageColor="bg-amber-700"
         />
         <ProjectCard
-          index={9}
+          index={10}
           title="Remora"
           desc="Interpreted programming language with basic features such as strings, arrays and functions."
           techStack="Python"
