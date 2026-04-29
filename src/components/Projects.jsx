@@ -10,6 +10,7 @@ import NbPull from "/assets/nbpull.png";
 import BotBlocks from "/assets/botblocks.png";
 import Reforge from "/assets/reforge.png";
 import Gork from "/assets/Gork.png";
+import Microtools from "/assets/microtools.png";
 
 import { motion } from "motion/react";
 import { FiGithub, FiVideo, FiPackage } from "react-icons/fi";
@@ -175,8 +176,19 @@ export const Projects = ({ projectRef }) => {
         />
         <ProjectCard
           index={2}
+          title="Microtools & MCP Server"
+          desc="A suite of browser-local utilities designed for privacy and speed, featuring JSON diffing, image batch-resizing, and CSV conversions. Extended with a standalone Model Context Protocol (MCP) server, exposing these capabilities directly to AI agents. Built to eliminate external API reliance, demonstrating expertise in secure, offline-first architectures and emerging AI integration standards."
+          techStack="React, Node.js, MCP SDK, Vite, Tailwind CSS"
+          githubLink="https://github.com/Champion2005/microtools"
+          webappLink="https://microtools.apatel.xyz"
+          image={Microtools}
+          imageColor="bg-slate-900"
+          imageFit="object-cover"
+        />
+        <ProjectCard
+          index={3}
           title="Gork"
-          desc="A comprehensive orchestration dashboard for Discord bots that provides real-time telemetry, model usage tracking, and automated audit logging. Features a rich UI for managing AI-driven personas, personal user memories (facts), and usage-based analytics across multiple LLM providers. Built to centralize bot operations with a focus on observability and chaotic witty engagement."
+          desc="A comprehensive orchestration dashboard for Discord bots that provides real-time telemetry, model usage tracking, and automated audit logging. Features a rich UI for managing AI-driven personas, personal user memories (facts), and usage-based analytics across multiple LLM providers. Built to centralize bot operations with a focus on deep observability and robust AI integrations."
           techStack="React, Vite, Discord.js, OpenRouter API, Bun, Tailwind CSS"
           githubLink="https://github.com/Champion2005/gork"
           webappLink="https://gork.apatel.xyz"
