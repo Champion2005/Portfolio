@@ -270,11 +270,10 @@ export const Projects = ({ projectRef }) => {
       <h2 className="section-heading mb-5 text-xl font-bold sm:text-3xl">Personal Projects</h2>
       <div className="flat-accent-line mb-6" />
 
-      <motion.div
-        layout
+      <div
         className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
       >
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence>
           {visibleProjects.map((project, index) => (
             <ProjectCard
               key={project.title}
@@ -282,7 +281,7 @@ export const Projects = ({ projectRef }) => {
             />
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       {projectsData.length > 9 && (
         <div className="mt-10 flex justify-center">
