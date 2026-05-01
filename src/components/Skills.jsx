@@ -73,30 +73,30 @@ const currentStack = [
 const skillsData = [
   {
     category: "Agentic AI",
-    skills: ["Model Context Protocol (MCP)", "Copilot CLI", "Custom Workflows", "Prompt Engineering", "Agentic Skills", "Autonomous Agents"],
+    skills: ["Model Context Protocol (MCP)", "Copilot CLI", "Custom Workflows", "Prompt Engineering", "Agentic Skills", "Autonomous Agents", "OpenRouter API", "Gemini API", "Github API"],
   },
   {
     category: "Languages",
-    skills: ["Python", "Java", "C++", "C", "Rust", "Lua", "Terraform"],
+    skills: ["Python", "TypeScript", "JavaScript", "SQL", "Lua", "Rust"],
   },
   {
     category: "Frontend",
     skills: [
       "React",
+      "Vite",
+      "Tailwind CSS",
+      "Three.js",
       "HTML",
       "CSS",
-      "Tailwind CSS",
-      "JavaScript",
-      "TypeScript",
     ],
   },
   {
-    category: "Backend",
-    skills: ["Node.js", "Express", "Cors", "Axios", "SQL"],
+    category: "Backend & Cloud",
+    skills: ["Node.js", "Express", "Firebase", "Google Cloud", "Pydantic", "Discord.js", "Bun"],
   },
   {
     category: "Dev Tools",
-    skills: ["Git", "Linux", "Google Cloud", "Azure", "Firebase", "Docker", "Ansible"],
+    skills: ["Git", "Docker", "Azure", "Terraform", "Vitest", "Pyodide"],
   },
 ];
 
