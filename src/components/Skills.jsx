@@ -80,23 +80,12 @@ const skillsData = [
     skills: ["Python", "TypeScript", "JavaScript", "SQL", "Lua", "Rust"],
   },
   {
-    category: "Frontend",
-    skills: [
-      "React",
-      "Vite",
-      "Tailwind CSS",
-      "Three.js",
-      "HTML",
-      "CSS",
-    ],
+    category: "Full Stack",
+    skills: ["React", "Node.js", "Express", "Vite", "Tailwind CSS", "Three.js", "Discord.js", "Bun", "Pydantic", "HTML", "CSS"],
   },
   {
-    category: "Backend & Cloud",
-    skills: ["Node.js", "Express", "Firebase", "Google Cloud", "Pydantic", "Discord.js", "Bun"],
-  },
-  {
-    category: "Dev Tools",
-    skills: ["Git", "Docker", "Azure", "Terraform", "Vitest", "Pyodide"],
+    category: "Cloud & DevOps",
+    skills: ["Firebase", "Google Cloud", "Azure", "Git", "Docker", "Terraform", "Vitest", "Pyodide"],
   },
 ];
 
