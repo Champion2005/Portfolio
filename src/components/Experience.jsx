@@ -9,7 +9,12 @@ const experiences = [
     date: "Jan 2026 – Present",
     current: true,
     url: "https://www.enbridge.com",
-    bullets: [],
+    bullets: [
+      "Built nbpull, a Python CLI tool that automated data extraction from the team's NetBox source-of-truth, eliminating hours of manual IPAM querying across 12 resource types and enabling RFC 1918 IP space auditing that tracks coverage against a 90% documentation target.",
+      "Designed a data migration plan to properly classify 532 network devices and 1, 164 IP prefixes — 89 % previously unassigned in NetBox — by cross - referencing 4 independent data sources, directly improving the reliability of automated network operations that depend on accurate source - of - truth data.Separately audited 30, 116 RFC 1918 prefixes across the enterprise, pushed current scope coverage to 20,020 mapped prefixes(66.5 %), and cut the ServiceNow Discovery export into a dedicated Azure Functions repo so the cleaned NetBox source of truth now feeds an automated weekly delivery path.",
+      "Built a reusable AI development workflow template for GitHub Copilot that keeps the default agent as the orchestrator while delegating focused work to specialist subagents, reducing context/ tool overload and creating a traceable path from PRD requirements and ADR decisions to reviewed code.Validated the workflow in a live team showcase on ns - template - repo with a real feature taken through planning, implementation, and test review.",
+      "Contributed to Azure cloud infrastructure automation using Terraform (VWAN, VHUB, VNET) and validated NetBox Terraform provider integrations for automated IPAM provisioning."
+    ],
     tags: ["Python", "Azure", "Terraform", "Ansible", "NetBox IPAM", "Agentic Workflows"],
   },
   {
@@ -61,16 +66,14 @@ const Experience = ({ experienceRef }) => {
           >
             {/* Timeline dot */}
             <span
-              className={`absolute -left-8 top-2 flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:-left-10 ${
-                exp.current ? "animate-pulse" : ""
-              }`}
+              className={`absolute -left-8 top-2 flex h-3 w-3 -translate-x-1/2 items-center justify-center sm:-left-10 ${exp.current ? "animate-pulse" : ""
+                }`}
             >
               <span
-                className={`block h-3 w-3 rounded-full border-2 border-[var(--accent-strong)] ${
-                  exp.current
+                className={`block h-3 w-3 rounded-full border-2 border-[var(--accent-strong)] ${exp.current
                     ? "bg-[var(--accent)] shadow-[0_0_8px_var(--accent)]"
                     : "bg-[var(--surface)]"
-                }`}
+                  }`}
               />
             </span>
 

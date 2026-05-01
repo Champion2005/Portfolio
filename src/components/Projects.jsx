@@ -10,7 +10,7 @@ import NbPull from "/assets/nbpull.png";
 import BotBlocks from "/assets/botblocks.png";
 import Reforge from "/assets/reforge.png";
 import Gork from "/assets/Gork.png";
-import Microtools from "/assets/microtools.png";
+import Microtools from "/assets/Microtools.png";
 
 import { motion } from "motion/react";
 import { FiGithub, FiVideo, FiPackage } from "react-icons/fi";
@@ -27,7 +27,7 @@ const ProjectCard = ({
   npmLink,
   image,
   imageColor,
-  imageFit = "object-scale-down",
+  imageFit = "object-contain",
 }) => {
   const { trackEvent } = useAnalytics();
   const [expanded, setExpanded] = React.useState(false);
@@ -188,7 +188,7 @@ export const Projects = ({ projectRef }) => {
         <ProjectCard
           index={3}
           title="Gork"
-          desc="A comprehensive orchestration dashboard for Discord bots that provides real-time telemetry, model usage tracking, and automated audit logging. Features a rich UI for managing AI-driven personas, personal user memories (facts), and usage-based analytics across multiple LLM providers. Built to centralize bot operations with a focus on deep observability and robust AI integrations."
+          desc="A comprehensive orchestration dashboard for our agentic discord bot that provides real-time telemetry, model usage tracking, and automated audit logging. Features a rich UI for managing AI-driven personas, personal user memories (facts), and usage-based analytics across multiple LLM providers. Built to centralize bot operations with a focus on deep observability and robust AI integrations."
           techStack="React, Vite, Discord.js, OpenRouter API, Bun, Tailwind CSS"
           githubLink="https://github.com/Champion2005/gork"
           webappLink="https://gork.apatel.xyz"
