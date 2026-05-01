@@ -10,6 +10,30 @@ import GCPIcon from "/assets/gcp.svg";
 import PythonIcon from "/assets/python.svg";
 
 import { motion } from "motion/react";
+import { FaRobot, FaTerminal, FaWandMagicSparkles, FaMicrochip } from "react-icons/fa6";
+
+const agenticSkills = [
+  {
+    tech: "Agentic AI",
+    icon: <FaRobot className="m-4 h-10 w-10 text-[var(--accent-strong)]" />,
+    description: "Building autonomous agents and complex LLM orchestrations."
+  },
+  {
+    tech: "MCP Workflows",
+    icon: <FaMicrochip className="m-4 h-10 w-10 text-[var(--accent-strong)]" />,
+    description: "Standardizing tool-use via Model Context Protocol."
+  },
+  {
+    tech: "CLI Automation",
+    icon: <FaTerminal className="m-4 h-10 w-10 text-[var(--accent-strong)]" />,
+    description: "Custom CLI workflows with Copilot and agentic triggers."
+  },
+  {
+    tech: "Prompt Engineering",
+    icon: <FaWandMagicSparkles className="m-4 h-10 w-10 text-[var(--accent-strong)]" />,
+    description: "Advanced instructions, system prompts, and custom skills."
+  },
+];
 
 const currentStack = [
   {
@@ -48,6 +72,10 @@ const currentStack = [
 
 const skillsData = [
   {
+    category: "Agentic AI",
+    skills: ["Model Context Protocol (MCP)", "Copilot CLI", "Custom Workflows", "Prompt Engineering", "Agentic Skills", "Autonomous Agents"],
+  },
+  {
     category: "Languages",
     skills: ["Python", "Java", "C++", "C", "Rust", "Lua", "Terraform"],
   },
@@ -81,7 +109,35 @@ const Skills = ({ skillRef }) => {
     >
       <h2 className="section-heading mb-4 text-xl font-bold sm:text-3xl">Technical Skills</h2>
       <div className="flat-accent-line mb-6" />
-      <h3 className="text-lg font-bold sm:text-xl">Main Skills</h3>
+      
+      <h3 className="text-lg font-bold sm:text-xl">Agentic AI & LLM Workflows</h3>
+      <p className="mb-4 text-[var(--text-muted)]">
+        Experience in building autonomous agents and standardizing tool-use via MCP
+      </p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.08 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+      >
+        {agenticSkills.map((skill, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="glass-panel flex w-full items-center rounded-xl border px-1"
+          >
+            {skill.icon}
+            <div className="flex flex-col py-4 pr-4">
+              <h3 className="text-xl font-semibold text-[var(--text-primary)]">{skill.tech}</h3>
+              <p className="text-sm text-[var(--text-muted)]">{skill.description}</p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <h3 className="mt-8 text-lg font-bold sm:text-xl">Main Skills</h3>
       <p className="mb-4 text-[var(--text-muted)]">
         These are my most used technologies
       </p>
