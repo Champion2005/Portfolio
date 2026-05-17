@@ -155,7 +155,7 @@ const projectsData = [
   {
     title: "FinClaw",
     desc: "An automated due diligence command center for retail investors that monitors investment theses against fundamentals to prevent 'thesis drift'. Combines deterministic Python logic for complex ETF exposure calculations with LLM-powered synthesis of SEC filings and earnings transcripts. Built with a focus on anti-hallucination, hyperlinked evidence, and local-first data storage.",
-    techStack: "React 19, Python, FastAPI, Pydantic AI, SQLite, ChromaDB, Tailwind CSS",
+    techStack: "React, Python, FastAPI, Pydantic AI, SQLite, ChromaDB, Tailwind CSS",
     githubLink: "https://github.com/Champion2005/finclaw",
     webappLink: "https://finclaw.apatel.xyz/",
     image: FinClaw,
