@@ -11,6 +11,7 @@ import BotBlocks from "/assets/botblocks.png";
 import Reforge from "/assets/reforge.png";
 import Gork from "/assets/Gork.png";
 import Microtools from "/assets/Microtools.png";
+import FinClaw from "/assets/finclaw.png";
 
 import { motion, AnimatePresence } from "motion/react";
 import { FiGithub, FiVideo, FiPackage, FiChevronDown, FiChevronUp } from "react-icons/fi";
@@ -151,6 +152,15 @@ const ProjectCard = ({
 };
 
 const projectsData = [
+  {
+    title: "FinClaw",
+    desc: "An automated due diligence command center for retail investors that monitors investment theses against fundamentals to prevent 'thesis drift'. Combines deterministic Python logic for complex ETF exposure calculations with LLM-powered synthesis of SEC filings and earnings transcripts. Built with a focus on anti-hallucination, hyperlinked evidence, and local-first data storage.",
+    techStack: "React 19, Python, FastAPI, Pydantic AI, SQLite, ChromaDB, Tailwind CSS",
+    githubLink: "https://github.com/Champion2005/finclaw",
+    webappLink: "https://finclaw.apatel.xyz/",
+    image: FinClaw,
+    imageColor: "bg-[#4a3e42]",
+  },
   {
     title: "AmICooked",
     desc: "An AI-powered GitHub portfolio auditor designed to give developers a brutally honest reality check on their employability. By analyzing granular account data, the platform determines if a user's career prospects are 'cooked' and provides a personalized roadmap to recovery.",
